@@ -2,9 +2,214 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Site Adı</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Numen Kolektif</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #F5F3EE;
+      color: #1a1a1a;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: #1E2D7A;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-logo {
+      width: 144px;
+      height: 144px;
+      object-fit: contain;
+      background: white;
+      border-radius: 8px;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      color: #1E2D7A;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      border: none;
+      background: #C8D8FF;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .tab:hover { background: #DDEAFF; }
+
+    .tab.active {
+      background: #DDEAFF;
+      border-bottom: 3px solid #E07B00;
+      border-radius: 6px 6px 3px 3px;
+    }
+
+    /* HERO */
+    .hero-band {
+      width: 100%;
+      height: 340px;
+      background: #1E2D7A url('background.jpg') center center / cover no-repeat;
+      display: block;
+    }
+
+    /* CONTENT */
+    .content-area {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px;
+    }
+
+    .section-heading {
+      font-size: 12px;
+      color: #1E2D7A;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      font-family: Georgia, serif;
+      border-left: 3px solid #C0392B;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #2a2a2a;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #1E2D7A;
+      padding: 24px 40px;
+      margin-top: 48px;
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      text-decoration: none;
+      font-family: Georgia, serif;
+    }
+
+    .contact-row:hover { color: white; }
+
+    .contact-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-gmail { background: white; }
+    .icon-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .icon-spotify { background: #1DB954; }
+  </style>
 </head>
 <body>
-  <h1>Merhaba, dünya</h1>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <img src="Logo.jpg" alt="Numen Kolektif" class="site-logo">
+    <nav class="nav-tabs">
+      <a href="sezon.html" class="tab">2026 / 2027 Sezonu</a>
+      <a href="sanatcilar.html" class="tab">Sanatçılar</a>
+      <a href="medya.html" class="tab">Medya</a>
+    </nav>
+  </header>
+
+  <!-- HERO / ARKA PLAN GÖRSELİ -->
+  <div class="hero-band"></div>
+
+  <!-- HİKAYEMİZ -->
+  <main class="content-area">
+    <div class="section-heading">Hikayemiz</div>
+    <p class="section-text">
+      <!-- Hikaye metni buraya gelecek -->
+     Müziğe ve sanata duyulan ortak bağlılığın beslediği köklü dostluklardan doğan Numen Oda Topluluğu, popüler eğilimlerin yön verdiği ve hızla değişen günümüz sanat ortamında, özgünlüğü ve yaratıcılığı merkeze alan bir vizyon taşır.
+
+Topluluğun temel amacı, dünyanın dört bir yanında eğitim görmüş ya da hâlen eğitimine devam eden genç Türk sanatçıları bir araya getirebilecek bir platform işlevi görmektir.
+
+Farklı formasyonlarda faaliyet gösterebilen ve proje bazlı bir üretim modeliyle çalışan topluluk, kolektif üretim anlayışıyla, uzun vadede sınırları aşan bir hareket alanına sahip dinamik bir çağdaş oda müziği topluluğu oluşturmayı hedefler.
+
+Numen Oda Topluluğu, özellikle genç kuşak sanatçıların yaratıcı potansiyelini bir araya getirerek Türk sanat hayatında kalıcı ve sürdürülebilir bir yer edinmeyi amaçlar. Bu doğrultuda, sanatçılar arasında üretken iş birliklerini teşvik eden ve yeni ifade alanları açan bir buluşma noktası olmayı hedefler.
+
+İsmini Latince kökenli “numen” kavramından alan topluluk, görünmeyen ancak hissedilen yaratıcı enerjiyi ve kolektif ilhamı temsil eder.
+
+
+    </p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-contacts">
+
+      <a href="mailto:numenkolektif@gmail.com" class="contact-row">
+        <div class="contact-icon icon-gmail">
+          <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
+            <path d="M1 1h13v10H1V1z" fill="white" stroke="#ddd" stroke-width="0.5"/>
+            <path d="M1 1l6.5 5.5L14 1" stroke="#EA4335" stroke-width="1.3" fill="none"/>
+          </svg>
+        </div>
+        numenkolektif@gmail.com
+      </a>
+
+      <a href="https://instagram.com/numen.kolektif" class="contact-row" target="_blank" rel="noopener">
+        <div class="contact-icon icon-instagram">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="1" width="12" height="12" rx="3.5" stroke="white" stroke-width="1.3" fill="none"/>
+            <circle cx="7" cy="7" r="2.8" stroke="white" stroke-width="1.2" fill="none"/>
+            <circle cx="10.5" cy="3.5" r="0.8" fill="white"/>
+          </svg>
+        </div>
+        numen.kolektif
+      </a>
+
+      <a href="https://open.spotify.com/artist/NumenKolektif" class="contact-row" target="_blank" rel="noopener">
+        <div class="contact-icon icon-spotify">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 5.5c2.5-0.9 5.5-0.7 7.5 0.6" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M3 7.5c2-0.7 4.5-0.5 6 0.5" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M3.5 9.5c1.5-0.5 3.3-0.4 4.5 0.3" stroke="white" stroke-width="1.0" stroke-linecap="round"/>
+          </svg>
+        </div>
+        Numen Kolektif
+      </a>
+
+    </div>
+  </footer>
+
 </body>
 </html>
