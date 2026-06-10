@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 / 2027 Sezonu — Numen Kolektif</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #F5F3EE;
+      color: #1a1a1a;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: #1E2D7A;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .site-logo {
+      width: 144px;
+      height: 144px;
+      object-fit: contain;
+      background: white;
+      border-radius: 8px;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .site-name {
+      color: white;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      color: #1E2D7A;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      cursor: pointer;
+      border: none;
+      background: #C8D8FF;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .tab:hover { background: #DDEAFF; }
+
+    .tab.active {
+      background: #DDEAFF;
+      border-bottom: 3px solid #E07B00;
+      border-radius: 6px 6px 3px 3px;
+    }
+
+    /* HERO */
+    .hero-band {
+      width: 100%;
+      height: 340px;
+      background: #1E2D7A url('background.jpg') center center / cover no-repeat;
+    }
+
+    /* CONTENT */
+    .content-area {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 40px;
+    }
+
+    .page-title {
+      font-size: 13px;
+      color: #1E2D7A;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      border-left: 3px solid #C0392B;
+      padding-left: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* PROJE BUTONLARI */
+    .proje-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .proje-btn {
+      padding: 12px 28px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: 2px solid #1E2D7A;
+      border-radius: 6px;
+      background: transparent;
+      color: #1E2D7A;
+      transition: all 0.2s;
+    }
+
+    .proje-btn:hover {
+      background: #1E2D7A;
+      color: white;
+    }
+
+    .proje-btn.active {
+      background: #1E2D7A;
+      color: white;
+      border-color: #1E2D7A;
+    }
+
+    /* PROJE İÇERİĞİ */
+    .proje-panel { display: none; }
+    .proje-panel.active { display: block; }
+
+    .proje-label {
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .proje-baslik {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1E2D7A;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .proje-altyazi {
+      font-size: 18px;
+      font-style: italic;
+      color: #555;
+      margin-bottom: 32px;
+    }
+
+    .bolum {
+      margin-bottom: 32px;
+    }
+
+    .bolum-baslik {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: #C0392B;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e0dbd2;
+    }
+
+    .program-listesi {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .program-listesi li {
+      font-size: 17px;
+      line-height: 1.5;
+      color: #2a2a2a;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .program-listesi li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #C0392B;
+    }
+
+    .program-listesi li em {
+      font-style: italic;
+    }
+
+    .muzisyen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px 16px;
+    }
+
+    .muzisyen-item {
+      font-size: 16px;
+      color: #2a2a2a;
+      line-height: 1.5;
+    }
+
+    .muzisyen-rol {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-bottom: 4px;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    .aciklama-metin {
+      font-size: 17px;
+      line-height: 1.85;
+      color: #2a2a2a;
+      margin-bottom: 16px;
+    }
+
+    .ayirici {
+      border: none;
+      border-top: 1px solid #ddd8d0;
+      margin: 32px 0;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #1E2D7A;
+      padding: 24px 40px;
+      margin-top: 48px;
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.8);
+      font-size: 15px;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .contact-row:hover { color: white; }
+
+    .contact-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-gmail { background: white; }
+    .icon-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .icon-spotify { background: #1DB954; }
+
+    /* MOBİL */
+    @media (max-width: 640px) {
+      .site-header { padding: 14px 20px; flex-direction: column; align-items: flex-start; }
+      .site-logo { width: 100px; height: 100px; }
+      .site-name { font-size: 22px; }
+      .nav-tabs { width: 100%; }
+      .tab { padding: 8px 14px; font-size: 13px; }
+      .hero-band { height: 200px; }
+      .content-area { padding: 32px 20px; }
+      .proje-baslik { font-size: 24px; }
+      .site-footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo-group">
+      <img src="Logo .jpg" alt="Numen Kolektif" class="site-logo">
+      <span class="site-name">Numen Kolektif</span>
+    </a>
+    <nav class="nav-tabs">
+      <a href="sezon.html" class="tab active">2026 / 2027 Sezonu</a>
+      <a href="sanatcilar.html" class="tab">Sanatçılar</a>
+      <a href="medya.html" class="tab">Medya</a>
+    </nav>
+  </header>
+
+  <div class="hero-band"></div>
+
+  <main class="content-area">
+    <div class="page-title">2026 / 2027 Konser Sezonu</div>
+
+    <!-- PROJE BUTONLARI -->
+    <div class="proje-tabs">
+      <button class="proje-btn active" onclick="gosterProje('proje1', this)">Proje I</button>
+      <button class="proje-btn" onclick="gosterProje('proje2', this)">Proje II</button>
+    </div>
+
+    <!-- PROJE I -->
+    <div id="proje1" class="proje-panel active">
+      <div class="proje-label">~ Proje I ~</div>
+      <div class="proje-baslik">Beş Ses Beş Şehir</div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Program</div>
+        <ul class="program-listesi">
+          <li>Gabriel Fauré – <em>Piyanolu Beşli No. 1, Op. 89</em></li>
+          <li>Ege Gür – <em>Intermezzo</em> (2023)</li>
+          <li>Ulvi Cemal Erkin – <em>Piyanolu Beşli</em></li>
+        </ul>
+      </div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Müzisyenler</div>
+        <div class="muzisyen-rol">Keman</div>
+        <div class="muzisyen-item">İdil Yunkuş &nbsp;·&nbsp; Rüzgar Turgay</div>
+        <div class="muzisyen-rol">Viyola</div>
+        <div class="muzisyen-item">Emir Kemancı</div>
+        <div class="muzisyen-rol">Viyolonsel</div>
+        <div class="muzisyen-item">Beste Yıldız</div>
+        <div class="muzisyen-rol">Piyano</div>
+        <div class="muzisyen-item">İrem Yunkuş</div>
+      </div>
+
+      <hr class="ayirici">
+
+      <div class="bolum">
+        <div class="bolum-baslik">Program Açıklaması</div>
+        <p class="aciklama-metin">Kolektifin 27 Nisan 2026 tarihinde gerçekleştirdiği <em>Beş Ses Bir Yolculuk</em> adlı prömiyer konserinin devamı olarak geliştirilen bu proje, klasik Batı müziği ile çağdaş Türk müziği arasında köprü kuran bir repertuarın ülkemizin beş şehrinde farklı seyirci kitleleri ile buluşmasını hedefler.</p>
+        <p class="aciklama-metin">Projenin repertuvarı, Gabriel Fauré'nin 19. yüzyılın sonlarına doğru yazmış olduğu ve zengin armonik dokusuyla dikkat çeken <em>1 Numaralı Piyanolu Beşli</em>'si ile Türk Beşleri kuşağının önemli isimlerinden Ulvi Cemal Erkin'in Anadolu motifleriyle bezeli <em>Piyanolu Beşli</em>'sini aynı sahnede buluşturmaktadır.</p>
+        <p class="aciklama-metin">Bu iki tarihî eserin yanı sıra, genç besteci Ege Gür'ün 2026 yılında Numen Kolektif'e armağan ettiği <em>Intermezzo</em> adlı piyanolu beşlisinin prömiyeri yer almaktadır.</p>
+      </div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Sanatsal Amaç</div>
+        <p class="aciklama-metin">Program, tarihsel süreklilik içerisinde bestecilik anlayışlarının evrimini görünür kılarken; çağdaş Türk müziğinin güncel arayışlarını ve potansiyelini uluslararası klasik müzik platformuna taşımayı hedeflemektedir. Fauré'nin romantik lirikası ile Erkin'in ulusal dili, Gür'ün getirdiği çağdaş perspektif ile birlikte çok katmanlı bir ses manzarası yaratmaktadır.</p>
+      </div>
+    </div>
+
+    <!-- PROJE II -->
+    <div id="proje2" class="proje-panel">
+      <div class="proje-label">~ Proje II ~</div>
+      <div class="proje-baslik">"Miras" — Çok Sesliliğin İzinde</div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Program</div>
+        <ul class="program-listesi">
+          <li>Paul Hindemith – <em>Yaylı Çalgılar Orkestrası Beş Parça, Op. 44</em></li>
+          <li>Ahmet Adnan Saygun – <em>Deyiş</em></li>
+          <li>Ege Gür – <em>Sessizliğin Soğuk Sularında</em></li>
+          <li>Ulvi Cemal Erkin – <em>Sinfonietta</em></li>
+        </ul>
+      </div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Şef</div>
+        <div class="muzisyen-item">Kerem Tunçer</div>
+
+        <div class="muzisyen-rol">Numen Oda Orkestrası</div>
+        <div class="muzisyen-item">
+          İdil Yunkuş &nbsp;·&nbsp; Ilgın Top &nbsp;·&nbsp; Sofiko Tchumburidze &nbsp;·&nbsp; Yağmur Tuna<br>
+          Rüzgar Turgay &nbsp;·&nbsp; Işı Tuncer &nbsp;·&nbsp; Doğa Altınok &nbsp;·&nbsp; Ada Enön &nbsp;·&nbsp; İdil Olgar<br>
+          Emir Kemancı &nbsp;·&nbsp; Arcan İşenkul &nbsp;·&nbsp; Arda Aykut<br>
+          Beste Yıldız &nbsp;·&nbsp; Ülker Tümer &nbsp;·&nbsp; Berkay Azıtepe<br>
+          Atakan Altun &nbsp;·&nbsp; Büşra Başoğlu
+        </div>
+      </div>
+
+      <hr class="ayirici">
+
+      <div class="bolum">
+        <div class="bolum-baslik">Numen Oda Orkestrası Hakkında</div>
+        <p class="aciklama-metin">Kolektif çatısı altında ilk defa bir araya gelecek olan bu on sekiz müzisyenin her biri; Hollanda'dan Rusya'ya, İngiltere'den Almanya'ya uzanan yolculuklarında ülkemizi farklı sanatsal mecralarda temsil etmeye devam etmektedir. Bu proje, topluluğun bünyesinde gerçekleşecek en önemli girişimlerinden biri olarak değerlendirilmekte; her sezon en az bir kez çeşitli program ve projelerde bir araya getirilmesi planlanmaktadır.</p>
+      </div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Program Açıklaması</div>
+        <p class="aciklama-metin">20. yüzyıl müziğinin en üretken teorisyenlerinden Paul Hindemith, ülkemiz için bir besteciden çok daha fazlasını ifade eder. 1930'lu yıllarda Türkiye'ye gelen ve Ankara Devlet Konservatuvarı'nın kuruluş raporlarını bizzat hazırlayan Hindemith, bu kurumsal evrimin baş mimarlarındandır. <em>Beş Parça</em>, yaylı çalgıların neoklasik sınırlarını keşfederken projemizin ilham noktasına ışık tutmaktadır.</p>
+        <p class="aciklama-metin">Ahmet Adnan Saygun'un <em>Deyiş</em>'i, Anadolu'nun derin mistik ruhunu ve ritmik zenginliğini modern bir dil aracılığıyla orkestraya taşır. Aranın ardından Ege Gür'ün <em>Sessizliğin Soğuk Sularında</em> adlı yapıtı, günümüz müzik dilini yansıtarak geçmişten devralınan mirasın geleceğe uzanan köprüsünü kurar. Konserin kapanışında ise Ulvi Cemal Erkin'in geleneksel Türk müziği makamlarını Batı formlarıyla buluşturduğu <em>Sinfonietta</em> yer almaktadır.</p>
+      </div>
+
+      <div class="bolum">
+        <div class="bolum-baslik">Sanatsal Amaç</div>
+        <p class="aciklama-metin">Numen Kolektif'in 2026/2027 sezonu kapsamındaki bu proje, Cumhuriyetin kuruluş yıllarından itibaren ülkemizdeki klasik müziğin gelişiminde rol oynamış bestecilerin eserlerini bir anlam bütünlüğü içerisinde sunma vizyonu taşır. Ankara Devlet Konservatuvarı'nın 90. yılında gerçekleşecek bu konser, dünü, bugünü ve yarını tek bir çizgide buluşturmayı hedeflemektedir.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-contacts">
+      <a href="mailto:numenkolektif@gmail.com" class="contact-row">
+        <div class="contact-icon icon-gmail">
+          <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
+            <path d="M1 1h13v10H1V1z" fill="white" stroke="#ddd" stroke-width="0.5"/>
+            <path d="M1 1l6.5 5.5L14 1" stroke="#EA4335" stroke-width="1.3" fill="none"/>
+          </svg>
+        </div>
+        numenkolektif@gmail.com
+      </a>
+      <a href="https://instagram.com/numen.kolektif" class="contact-row" target="_blank" rel="noopener">
+        <div class="contact-icon icon-instagram">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="1" width="12" height="12" rx="3.5" stroke="white" stroke-width="1.3" fill="none"/>
+            <circle cx="7" cy="7" r="2.8" stroke="white" stroke-width="1.2" fill="none"/>
+            <circle cx="10.5" cy="3.5" r="0.8" fill="white"/>
+          </svg>
+        </div>
+        numen.kolektif
+      </a>
+      <a href="https://open.spotify.com/artist/NumenKolektif" class="contact-row" target="_blank" rel="noopener">
+        <div class="contact-icon icon-spotify">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2.5 5.5c2.5-0.9 5.5-0.7 7.5 0.6" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M3 7.5c2-0.7 4.5-0.5 6 0.5" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M3.5 9.5c1.5-0.5 3.3-0.4 4.5 0.3" stroke="white" stroke-width="1.0" stroke-linecap="round"/>
+          </svg>
+        </div>
+        Numen Kolektif
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function gosterProje(id, btn) {
+      document.querySelectorAll('.proje-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.proje-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
