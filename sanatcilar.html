@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanatçılar — Numen Kolektif</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #F5F3EE;
+      color: #1a1a1a;
+    }
+
+    .site-header {
+      background: #1E2D7A;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .site-logo {
+      width: 144px;
+      height: 144px;
+      object-fit: contain;
+      background: white;
+      border-radius: 8px;
+      padding: 6px;
+    }
+
+    .site-name {
+      color: white;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      color: #1E2D7A;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      cursor: pointer;
+      border: none;
+      background: #C8D8FF;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .tab:hover { background: #DDEAFF; }
+    .tab.active {
+      background: #DDEAFF;
+      border-bottom: 3px solid #E07B00;
+      border-radius: 6px 6px 3px 3px;
+    }
+
+    .hero-band {
+      width: 100%;
+      height: 340px;
+      background: #1E2D7A url('background.jpg') center center / cover no-repeat;
+    }
+
+    .content-area {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 40px;
+    }
+
+    .page-title {
+      font-size: 13px;
+      color: #1E2D7A;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      border-left: 3px solid #C0392B;
+      padding-left: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* Alt sekme butonları */
+    .alt-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .alt-btn {
+      padding: 12px 28px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: 2px solid #1E2D7A;
+      border-radius: 6px;
+      background: transparent;
+      color: #1E2D7A;
+      transition: all 0.2s;
+    }
+
+    .alt-btn:hover { background: #1E2D7A; color: white; }
+    .alt-btn.active { background: #1E2D7A; color: white; }
+
+    /* Panel */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Sanatçı kartları */
+    .sanatci-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .sanatci-kart {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+
+    .sanatci-kart:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+    .kart-foto {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .kart-foto-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #e8e4dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+
+    .kart-bilgi {
+      padding: 16px 20px;
+    }
+
+    .kart-ad {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1E2D7A;
+      margin-bottom: 4px;
+    }
+
+    .kart-enstruman {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #C0392B;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #F5F3EE;
+      border-radius: 10px;
+      max-width: 760px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-kapat {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #1E2D7A;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 32px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .modal-ust {
+      display: flex;
+      gap: 0;
+    }
+
+    .modal-foto {
+      width: 240px;
+      flex-shrink: 0;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .modal-foto-placeholder {
+      width: 240px;
+      flex-shrink: 0;
+      background: #e8e4dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 13px;
+      min-height: 300px;
+    }
+
+    .modal-baslik {
+      padding: 28px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-ad {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1E2D7A;
+      margin-bottom: 6px;
+    }
+
+    .modal-enstruman {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #C0392B;
+      margin-bottom: 16px;
+    }
+
+    .modal-biyografi {
+      padding: 24px 32px;
+      border-top: 1px solid #e0dbd2;
+    }
+
+    .modal-biyografi p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #2a2a2a;
+      margin-bottom: 12px;
+    }
+
+    .modal-biyografi p:last-child { margin-bottom: 0; }
+
+    /* Footer */
+    .site-footer {
+      background: #1E2D7A;
+      padding: 24px 40px;
+      margin-top: 48px;
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.8);
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .contact-row:hover { color: white; }
+
+    .contact-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-gmail { background: white; }
+    .icon-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .icon-spotify { background: #1DB954; }
+
+    @media (max-width: 640px) {
+      .site-header { padding: 14px 20px; flex-direction: column; align-items: flex-start; }
+      .site-logo { width: 100px; height: 100px; }
+      .site-name { font-size: 22px; }
+      .nav-tabs { width: 100%; }
+      .tab { padding: 8px 14px; font-size: 13px; }
+      .hero-band { height: 200px; }
+      .content-area { padding: 32px 20px; }
+      .sanatci-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+      .modal-ust { flex-direction: column; }
+      .modal-foto, .modal-foto-placeholder { width: 100%; min-height: 280px; }
+      .site-footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="logo-group">
+    <img src="Logo.jpg" alt="Numen Kolektif" class="site-logo">
+    <span class="site-name">Numen Kolektif</span>
+  </a>
+  <nav class="nav-tabs">
+    <a href="sezon.html" class="tab">2026 / 2027 Sezonu</a>
+    <a href="sanatcilar.html" class="tab active">Sanatçılar</a>
+    <a href="medya.html" class="tab">Medya</a>
+  </nav>
+</header>
+
+<div class="hero-band"></div>
+
+<main class="content-area">
+  <div class="page-title">Sanatçılar</div>
+
+  <div class="alt-tabs">
+    <button class="alt-btn active" onclick="gosterPanel('icracilar', this)">İcracılar</button>
+    <button class="alt-btn" onclick="gosterPanel('besteciler', this)">Besteciler</button>
+  </div>
+
+  <!-- İCRACILAR -->
+  <div id="icracilar" class="panel active">
+    <div class="sanatci-grid" id="icracilar-grid"></div>
+  </div>
+
+  <!-- BESTECİLER -->
+  <div id="besteciler" class="panel">
+    <div class="sanatci-grid" id="besteciler-grid"></div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="modalKapat(event)">
+  <div class="modal" id="modal-icerik">
+    <button class="modal-kapat" onclick="document.getElementById('modal').classList.remove('open')">×</button>
+    <div class="modal-ust">
+      <div id="modal-foto-alani"></div>
+      <div class="modal-baslik">
+        <div class="modal-ad" id="modal-ad"></div>
+        <div class="modal-enstruman" id="modal-enstruman"></div>
+      </div>
+    </div>
+    <div class="modal-biyografi" id="modal-bio"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-contacts">
+    <a href="mailto:numenkolektif@gmail.com" class="contact-row">
+      <div class="contact-icon icon-gmail">
+        <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
+          <path d="M1 1h13v10H1V1z" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <path d="M1 1l6.5 5.5L14 1" stroke="#EA4335" stroke-width="1.3" fill="none"/>
+        </svg>
+      </div>
+      numenkolektif@gmail.com
+    </a>
+    <a href="https://instagram.com/numen.kolektif" class="contact-row" target="_blank" rel="noopener">
+      <div class="contact-icon icon-instagram">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <rect x="1" y="1" width="12" height="12" rx="3.5" stroke="white" stroke-width="1.3" fill="none"/>
+          <circle cx="7" cy="7" r="2.8" stroke="white" stroke-width="1.2" fill="none"/>
+          <circle cx="10.5" cy="3.5" r="0.8" fill="white"/>
+        </svg>
+      </div>
+      numen.kolektif
+    </a>
+    <a href="https://open.spotify.com/artist/NumenKolektif" class="contact-row" target="_blank" rel="noopener">
+      <div class="contact-icon icon-spotify">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2.5 5.5c2.5-0.9 5.5-0.7 7.5 0.6" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M3 7.5c2-0.7 4.5-0.5 6 0.5" stroke="white" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M3.5 9.5c1.5-0.5 3.3-0.4 4.5 0.3" stroke="white" stroke-width="1.0" stroke-linecap="round"/>
+        </svg>
+      </div>
+      Numen Kolektif
+    </a>
+  </div>
+</footer>
+
+<script>
+const icracilar = [
+  {
+    ad: "İdil Yunkuş", enstruman: "Keman", foto: "photos/idil_yunkus.jpg",
+    bio: `İdil Yunkuş, keman eğitimine beş yaşında babası Selahattin Yunkuş ile başlamış, Mersin Üniversitesi Devlet Konservatuvarı'nda Lily Tchumburidze ile devam etmiş ve 2017 yılında Profesör Çiğdem İyicil'in sınıfında lise eğitimini Mimar Sinan Güzel Sanatlar Üniversitesi İstanbul Devlet Konservatuvarı'nda tamamlamıştır. Amsterdam Konservatuarı hazırlık sınıfında Ilya Grubert ile çalışmış, ardından Lahey Kraliyet Konservatuvarı'nda Theodora Geraets ve Janet Krause ile eğitimini sürdürmüş ve 2023 yılında üstün dereceyle mezun olmuştur.<br><br>İstanbul Devlet Senfoni Orkestrası, Eskişehir Büyükşehir Belediyesi Senfoni Orkestrası, Bursa Bölge Devlet Senfoni Orkestrası ve Hacettepe Üniversitesi Devlet Konservatuvarı Senfoni Orkestrası eşliğinde Stravinsky, Mendelssohn, Vieuxtemps ve Erkin'in keman konçertolarını solist olarak seslendirmiştir.<br><br>Eylül 2023'te Keep an Eye Vakfı tarafından "Yılın Genç Müzisyeni" ödülüne, Eylül 2024'te ise Het Kerstjes Kurumu tarafından "Hollanda Keman Bursu" ödülüne layık görülmüştür. Dr. Nejat Eczacıbaşı Müzik Bursiyeri olarak Hollanda'da sürdürdüğü yüksek lisansını 2025 Haziran'ında cum laude derecesiyle tamamlamıştır. Mart 2024 itibarıyla Hollanda Müzik Enstrümanları Fonu (NMF) tarafından kendisine verilen 1800 yapımı Johannes Cuypers keman ile çalmaktadır.`
+  },
+  {
+    ad: "Sofiko Tchumburidze", enstruman: "Keman", foto: "photos/sofiko_tchumburidze.jpg",
+    bio: `2000 yılında Mersin'de Gürcü müzisyen bir ailenin çocuğu olarak dünyaya gelen Sofiko Tchumburidze, keman eğitimine annesi Lily Tchumburidze ile başlamıştır. Hochschule für Musik und Theater München'deki lisans eğitimini Prof. Julia Fischer'ın öğrencisi olarak tamamlayan sanatçı, yüksek lisans eğitimini de aynı hocayla sürdürmektedir.<br><br>Solist olarak Türkiye Cumhuriyeti Cumhurbaşkanlığı Senfoni Orkestrası, Çukurova Devlet Senfoni Orkestrası, Bursa Devlet Senfoni Orkestrası ve Antalya Senfoni Orkestrası ile sahne almıştır. Alpha Classics için Howard Griffiths yönetiminde Mozarteum Orkestrası ile CD kaydı gerçekleştirmiştir. 2022 yılından itibaren Daniel Barenboim yönetimindeki Divan Orkestrası ile Avrupa'nın önde gelen salonlarında konserler vermiştir.<br><br>ÇEV Sanat bursiyeri olan Tchumburidze, Deutsche Stiftung Musikleben tarafından kendisine verilen 1890 yapımı Lorenzo Ventapane kemanı ile kariyerine devam etmektedir.`
+  },
+  {
+    ad: "Ilgın Top", enstruman: "Keman", foto: "photos/ilgin_top.jpg",
+    bio: `Uluslararası alanda ödüller kazanmış kemancı Ilgın Top, hem solist hem de oda müzisyeni olarak dikkat çeken bir kariyere sahiptir. Lisans eğitimini Maastricht Konservatuvarı'nda Boris Belkin'in sınıfında üstün başarıyla tamamlamıştır.<br><br>Bilkent Senfoni Orkestrası, İzmir ve İstanbul Devlet Senfoni Orkestraları, Bursa ve Eskişehir Senfoni Orkestraları ve Galiçya Kraliyet Filarmoni Orkestrası gibi topluluklarla konserler vermiştir. Suna Kan Keman Yarışması ve Arthur Grumiaux Keman Yarışması gibi saygın uluslararası yarışmalarda birincilik elde etmiştir. 2023 yılında Aydın Gün Teşvik Ödülü'nü kazanmıştır.<br><br>Halen Hannover Müzik ve Tiyatro Yüksekokulu'nda Krzysztof Wegrzyn ile Konzertexamen programına devam etmektedir. Deutsche Stiftung Musikleben tarafından kendisine tahsis edilen Stephan von Baehr yapımı özel bir kemanla çalmaktadır.`
+  },
+  {
+    ad: "Doğa Altınok", enstruman: "Keman", foto: "photos/doga_altinok.jpg",
+    bio: `2000 doğumlu Doğa Altınok, keman eğitimine 2007'de Çukurova Üniversitesi Devlet Konservatuvarı'nda başlamıştır. Uluslararası kariyerinde Arthur Grumiaux Keman Yarışması (Brüksel, 2020 — 1.lik), Andrea Postacchini Yarışması (İtalya, 2015 — 1.lik) ve Young Virtuosos Yarışması (Sofya, 2015 — 1.lik) dahil pek çok prestijli yarışmada ödüller kazanmıştır.<br><br>Viyana Müzik ve Sahne Sanatları Üniversitesi'nde Prof. Dora Schwarzberg ve Prof. Anton Sorokow ile eğitimini sürdürmüştür. İzmir, Antalya, Bursa, Cumhurbaşkanlığı, İstanbul Devlet Senfoni Orkestraları ile konserler vermiş; Avrupa'nın önde gelen şehirlerinde resital ve oda müziği konserleri gerçekleştirmiştir.<br><br>Güher & Süher Pekinel "Dünya Sahnelerinde Genç Müzisyenler" Projesi dahilinde TÜPRAŞ tarafından desteklenmiştir. Ocak 2023'ten itibaren Viyana'daki Tonkünstler Orkestrası'nda ikinci kemanların yardımcı grup şefi pozisyonunda görev yapmaktadır.`
+  },
+  {
+    ad: "Yağmur Tuna", enstruman: "Keman", foto: "photos/yagmur_tuna.jpg",
+    bio: `Yağmur Tuna, 2005 yılında Eskişehir'de doğdu. 2015 yılında Anadolu Üniversitesi Devlet Konservatuvarı'nda konservatuvar eğitimine başladı. 2020 yılında Moskova Çaykovski Konservatuvarı Merkez Müzik Okulu'nu kazandı.<br><br>Paris Nouvelles Etoiles Yarışması'nda (2023 — 1.lik), Uluslararası Stravinsky Yarışması'nda (St. Petersburg, 2024 — 1.lik) ve Uluslararası YSAYE Yarışması'nda (Brüksel, 2022 — 3.lük) ödüller kazanmıştır. 2025'te Bolşoy Tiyatrosu'nda konser vermiş, Eskişehir ve İstanbul Devlet Senfoni Orkestraları ile solist olarak sahne almıştır.<br><br>Moskova Çaykovski Konservatuvarı'nı yabancı öğrenciler arasında en yüksek puanla kazanmış olup Prof. Alexander Vinnitski'nin sınıfında eğitimini sürdürmektedir. Enka Vakfı Lale Tara Sanat Bursu bursiyeridir.`
+  },
+  {
+    ad: "İdil Olgar", enstruman: "Keman", foto: "photos/idil_olgar.jpg",
+    bio: `2006 yılında Mersin'de doğan İdil Olgar, keman eğitimine 2012 yılında Mersin Üniversitesi Devlet Konservatuvarı'nda başladı. Çeşitli uluslararası yarışmalarda ödüller kazanan sanatçı; 2018'de Prag'da ikincilik, 2018'de Budapeşte'de birincilik elde etmiştir.<br><br>2024 yılında İzmir Senfoni Orkestrası ile Sibelius Keman Konçertosu'nu solist olarak seslendirmiştir. 2025 yılında oda müziği grubuyla Lamont School of Music yarışmasını kazanarak Colorado Müzik Festivali'ne davet edilmiş ve CPR radyo istasyonu ile kayıt yapmıştır. 2026 yılından itibaren Jean Baptiste Vuillaume yapımı keman ile çalmaktadır.`
+  },
+  {
+    ad: "İlke Işı Tuncer", enstruman: "Keman", foto: "photos/ilke_isi_tuncer.jpg",
+    bio: `2005 yılında Ankara'da doğan İlke Işı Tuncer, 2011 yılında Bilkent Üniversitesi Müzik ve Sahne Sanatları Fakültesi'nde keman eğitimine başladı. 2022 yılından bu yana Belçika'daki Musica Mundi School'da eğitimini sürdürmektedir.<br><br>Berlin Konzerthaus, Prag Rudolfinum, Bozar Brussels ve Roma Santa Cecilia gibi prestijli salonlarda sahne almıştır. Sırbistan Uluslararası Müzik Yarışması'nda 1.lik, Ulusal Genç Yetenekler Yarışması'nda Grand Prix, 2025'te 3. Arnold Rose Uluslararası Keman Yarışması'nda "Wiener Klassik" özel ödülüne layık görülmüştür.<br><br>Türkiye Gençlik Filarmoni Orkestrası'nda başkemancı olarak seçilmiş, 48. İstanbul Müzik Festivali kapsamında Süreyya Operası'nda sahne almıştır. 2025 yılında Royal College of Music London'da tam burslu eğitim hakkı kazanmıştır.`
+  },
+  {
+    ad: "Ada Enön", enstruman: "Keman", foto: null,
+    bio: `31 Ekim 2001 tarihinde İstanbul'da doğan Ada Enön, keman çalışmalarına 2007 yılında Lili Tchumburidze'nin öğrencisi olarak başladı. 2013'te 3. Uluslararası Harmony Keman Yarışması'nda birincilik, 2014'te Grumiaux Uluslararası Keman Yarışması'nda mansiyon ödülü aldı.<br><br>2020 yılında Sorbonne Üniversitesi Müzikoloji Bölümü ve Paris Bölge Konservatuvarı'na kabul edildi. Paris'teki öğrenimi boyunca Orchestre de Paris bünyesinde Philharmonie de Paris'de staj programına katıldı. 2024-2025 yılları arasında Viyana'daki Schubert Konservatuvarı'nda Prof. Louise Chisson ile çalışmalarını sürdürdü. Günümüzde İzmir Oda Orkestrası üyesidir.`
+  },
+  {
+    ad: "Rüzgar Turgay", enstruman: "Keman", foto: "photos/ruzgar_turgay.jpg",
+    bio: `Rüzgar Turgay 1996 yılında İstanbul'da doğdu. Keman eğitimine 4,5 yaşında başladı; 2004 yılında İstanbul Üniversitesi Devlet Konservaarı'nda Venyamin Varshavsky'nin sınıfına girdi. 2021 yılında Yüksek Lisans eğitimini tamamlamış olup halen aynı kurumda doktora eğitimine devam etmektedir.<br><br>Sillage Ensemble yaylı orkestrasının kurucu üyesidir. Büyükada Quartet ile AKOB 5. Ulusal Oda Müziği Yarışması'nda birincilik ödülü kazanmıştır. 2021 yılından itibaren Maltepe Üniversitesi Konservatuarı'nda araştırma görevlisi olarak çalışmaktadır.`
+  },
+  {
+    ad: "Arcan İşenkul", enstruman: "Viyola", foto: "photos/arcan_isenkul.jpg",
+    bio: `"Renkli müzikal ifadesi, mükemmel tonu ve sanatsal vizyonu" ile övgü toplayan Arcan İşenkul (2005, Ankara), 2025 yılında prestijli Siemens Sanat Programı'na seçilerek Carnegie Hall Weill Music Room sahnesinde konser vermiştir.<br><br>Halen Frankfurt Müzik ve Sahne Sanatları Üniversitesi'nde ünlü viyola virtüözü Prof. Tabea Zimmermann ile eğitimini sürdürmektedir. 6. Uluslararası Oskar Nedbal Viyola Yarışması'nda "Pirastro Üstün Genç Yetenek Ödülü" ve Uluslararası Prof. Ruşen Güneş Viyola Yarışması'nda birincilik kazanmıştır. Concertgebouworkest, Bilkent Senfoni ve Luzerne Music Center Orkestrası ile konserler vermiştir.<br><br>Alman Enstrüman Fonu (Deutsche Stiftung Musikleben) bursiyeri olarak 1973 yapımı Josef Kantuscher Op. 310 viyola ile çalmaktadır.`
+  },
+  {
+    ad: "Emir Kemancı", enstruman: "Viyola", foto: "photos/emir_kemanci.jpg",
+    bio: `İstanbul doğumlu Emir Kemancı, viyola eğitimine 2011 yılında MSGSÜ Devlet Konservatuarı'nda başladı. Prof. Tabea Zimmermann, Prof. Tatjana Masurenko ve Prof. Andra Darzins ile masterclass çalışmalarına katılmıştır.<br><br>Türkiye Ulusal Gençlik Filarmoni Orkestrası ile Berlin Konzerthaus, Prag Rudolfinum Dvořák Hall ve Venedik'te konserler vermiştir. Aynı orkestranın viyola grup şefliğini üstlenerek Viyana'da Radio Kulturhaus'ta konser vermiş; bu konser Avusturya Radyosu yayınından dinleyicilere ulaşmıştır. 2018-2019 İş Sanat konser sezonu açılış konserinde Cumhurbaşkanlığı Senfoni Orkestrası ile solist olarak yer almıştır.<br><br>2024 yılında İstanbul Devlet Senfoni Orkestrası'nda göreve başlamıştır.`
+  },
+  {
+    ad: "Arda Aykut", enstruman: "Viyola", foto: "photos/arda_aykut.jpg",
+    bio: `Arda Aykut 2002 yılında Ankara'da doğdu. 2021 yılından itibaren UdK Berlin'de Prof. Julia Rebekka-Brembeck Adler ile solo lisans ve ardından master eğitimine devam etmektedir. Artemis Quartet'ten Vineta Sareika ve Gregor Sigl ile oda müziği eğitimi almıştır.<br><br>Berlin Philharmonie, Konzerthaus, München Herkulessaal ve Salzburg'da konserler vermiş; Sir Simon Rattle ile çalışma fırsatı bulmuştur. Üyesi olduğu Varyon Quartet ile Japonya'da Munetsugu Hall String Quartet Competition'da ve Almanya'da 1.lik ödülleri kazanmıştır.<br><br>Lisans eğitimini UdK Berlin'de en üst dereceyle tamamlamış olup eğitimi Dr. Herbert und Anne-Marie Lembcke Ad-Infinitum-Foundation ve Kurt und Felicitas Vössing Stiftung vakıfları tarafından desteklenmektedir.`
+  },
+  {
+    ad: "Beste Yıldız", enstruman: "Viyolonsel", foto: "photos/beste_yildiz.jpg",
+    bio: `Beste Yıldız, 2001 yılında Adana'da doğdu. 2019 yılında Den Haag Kraliyet Konservatuvarı'nda Larissa Groeneveld'in sınıfına kabul edildi. Yüksek Lisansını ayrıcalık ödülü ile tamamladı; Dr. Nejat Eczacıbaşı Vakfı müzik bursiyeri ve Den Haag Kraliyet Konservatuvarı "Excellence Scholarship" bursiyer olmuştur.<br><br>Ankara Müzik Festivali, Delft Chamber Music Festival ve Cellowercken Zutphen kapsamında sahne almıştır. Hollanda Ulusal Gençlik Orkestrası'nın başçellisti olarak konserler vermiştir.<br><br>Rotterdam Filarmoni Orkestrası'nın orkestra akademisi programına seçilmiş olup 2026-2027 sezonunda akademisyen sanatçı olarak konserler verecektir. The Netherlands Musical Instrument Foundation tarafından kendisine verilen 1870 Gaetano Chiocchi yapımı İtalyan çellosunu çalmaktadır.`
+  },
+  {
+    ad: "Berkay Azıtepe", enstruman: "Viyolonsel", foto: "photos/berkay_azitepe.jpg",
+    bio: `2003 yılında Ankara'da doğan Berkay Azıtepe, 2025 yılında Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'ndan yüksek dereceyle mezun oldu. 2024 yılından bu yana İstanbul Devlet Senfoni Orkestrası'nda viyolonsel sanatçısı olarak görev yapmaktadır.<br><br>Türkiye Gençlik Filarmoni Orkestrası ile Prag Rudolfinum ve Berlin Konzerthaus'ta konser vermiştir. Pan-Caucasian Youth Orchestra ile Tsinandali Festivali'ne, Musica Mundi Festivali'ne yüksek bursla katılmıştır. Thomas Kuti Viyolonsel Yarışması Türkiye etabında birincilik elde ederek Dublin'de Türkiye'yi temsil etmiştir.<br><br>Sascha Goetzel, Howard Griffiths ve Andreas Ottensamer gibi şeflerle çalışmış; İstanbul Filarmoni Derneği Quartet'in çellisti olmuştur.`
+  },
+  {
+    ad: "Atakan Altun", enstruman: "Kontrabas", foto: "photos/atakan_altun.jpg",
+    bio: `Atakan Altun (d. 2003), kontrabas eğitimine 2013 yılında Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'nda başlamıştır. 2023 yılında Polonya'da düzenlenen Grzegorz Olkiewicz Uluslararası Kontrabas Yarışması'nda birincilik ve Grand Prix ödülünü kazanmıştır.<br><br>İzmir Devlet Senfoni Orkestrası, Cumhurbaşkanlığı Senfoni Orkestrası ve İstanbul Devlet Senfoni Orkestrası eşliğinde solist olarak sahne almıştır. 2022 yılında Pan Caucasian Youth Orchestra bünyesinde Vasily Petrenko ve Charles Dutoit gibi uluslararası şeflerle çalışmıştır.<br><br>Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'ndan birincilikle mezun olan Altun, 2024 yılından itibaren Antalya Devlet Senfoni Orkestrası'nda görev yapmaktadır.`
+  },
+  {
+    ad: "Büşra Başoğlu", enstruman: "Kontrabas", foto: "photos/busra_basoglu.jpg",
+    bio: `2006 yılında doğan Büşra Başoğlu, 2016 yılında Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'nda Prof. Dr. Burak Karaağaç ile kontrabas eğitimine başladı. Türkiye Gençlik Filarmoni Orkestrası'nda 2023, 2024 ve 2025 yıllarında grup şefi olarak görev yapmıştır.<br><br>Lise son sınıfta Hacettepe Gençlik Senfoni Orkestrası eşliğinde solist olarak sahne almış; lisans birinci sınıfta İzmir Devlet Senfoni Orkestrası seçmelerini kazanarak "19 Mayıs Genç Kuşak Solistleri" kapsamında konser vermiştir. Halen Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'nda lisans eğitimine devam etmektedir.`
+  },
+  {
+    ad: "İrem Yunkuş", enstruman: "Piyano", foto: "photos/irem_yunkus.jpg",
+    bio: `Türk piyanist İrem Yunkuş, piyano eğitimine Mersin Üniversitesi Devlet Konservatuvarı'nda başladı ve Miroslav Daciç'in sınıfından mezun oldu. 2023 yılında Prof. Katia Veekmans'ın sınıfından ayrıcalık ödülü ile mezun olan sanatçı, 2024'te Mersin Üniversitesi Devlet Konservatuvarı'nda ikinci yüksek lisansını tamamladı.<br><br>Kasım 2022'de Çukurova Devlet Senfoni Orkestrası ile Orhan Şallıel Piyano Konçertosu'nun dünya prömiyerini gerçekleştirmiştir. Mersin AKOB Oda Müziği Yarışması'nda birincilik kazanmıştır.<br><br>2024 Mayıs'tan itibaren Opera Spanga'da repetitör ve şef asistanı olarak görev yapan Yunkuş, Ensemble Orochi ve ABO Trio ile çalışmalarını sürdürmektedir.`
+  },
+];
+
+const besteciler = [
+  {
+    ad: "Ege Gür", enstruman: "Besteci", foto: "photos/ege_gur.jpg",
+    bio: `Ege Gür Türk çağdaş müzik bestecisidir. Türkiye Gençlik Filarmoni Orkestrası ile Berlin Konzerthaus ve Amsterdam Concertgebouw'da kendi eserini yönetmiş; bu icraları ile 2024 Avrupa Bestecilik Ödülü'nü kazanmıştır. Yaptığı film müzikleriyle 2024 İzmir Uluslararası Film ve Müzik Festivali'nde En İyi Özgün Film Müziği Ödülü'nü kazanmıştır. 2023 yılında Cumhuriyetin 100. Yılı anısına Akdeniz Opera Bale Derneği tarafından Genç Türk Bestecisi Ödülü ile onurlandırılmıştır.<br><br>1998 yılında İstanbul'da doğan Gür, Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'nda Sıdıka Özdil ve Turgay Erdener ile kompozisyon çalışmalarını sürdürdü. 2021 yılında Yüksek Şeref Öğrencisi olarak mezun oldu. MSGSÜ İstanbul Devlet Konservatuvarı'nda Özkan Manav ile yüksek lisansını 2024'te tamamladı ve aynı kurumda öğretim görevlisi olarak ders vermeye başladı.<br><br>Yapıtları arasında yaylı orkestra için <em>Sessizliğin Soğuk Sularında</em>, piyanolu beşli <em>Intermezzo</em> ve orkestra için <em>görünmez olanın imgesi</em> yer almaktadır. Müzik çalışmalarının yanı sıra sinema ve edebiyat alanlarında da eserler üretmektedir.`
+  }
+];
+
+function kartOlustur(sanatci, index, tip) {
+  const div = document.createElement('div');
+  div.className = 'sanatci-kart';
+  div.onclick = () => modalAc(sanatci);
+
+  const fotoHTML = sanatci.foto
+    ? `<img class="kart-foto" src="${sanatci.foto}" alt="${sanatci.ad}">`
+    : `<div class="kart-foto-placeholder">Fotoğraf</div>`;
+
+  div.innerHTML = `
+    ${fotoHTML}
+    <div class="kart-bilgi">
+      <div class="kart-ad">${sanatci.ad}</div>
+      <div class="kart-enstruman">${sanatci.enstruman}</div>
+    </div>
+  `;
+  return div;
+}
+
+function modalAc(sanatci) {
+  document.getElementById('modal-ad').textContent = sanatci.ad;
+  document.getElementById('modal-enstruman').textContent = sanatci.enstruman;
+
+  const fotoAlani = document.getElementById('modal-foto-alani');
+  if (sanatci.foto) {
+    fotoAlani.innerHTML = `<img class="modal-foto" src="${sanatci.foto}" alt="${sanatci.ad}">`;
+  } else {
+    fotoAlani.innerHTML = `<div class="modal-foto-placeholder">Fotoğraf</div>`;
+  }
+
+  const bioDiv = document.getElementById('modal-bio');
+  bioDiv.innerHTML = sanatci.bio.split('<br><br>').map(p => `<p>${p}</p>`).join('');
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function modalKapat(e) {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.querySelector('.modal-kapat').onclick = () => {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+function gosterPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.alt-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Kartları oluştur
+const icracilarGrid = document.getElementById('icracilar-grid');
+icracilar.forEach((s, i) => icracilarGrid.appendChild(kartOlustur(s, i, 'icracilar')));
+
+const bestecilerGrid = document.getElementById('besteciler-grid');
+besteciler.forEach((s, i) => bestecilerGrid.appendChild(kartOlustur(s, i, 'besteciler')));
+</script>
+
+</body>
+</html>
