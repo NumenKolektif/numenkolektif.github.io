@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026 / 2027 Sezonu — Numen Kolektif</title>
+  <title>Sanatçılar — Numen Kolektif</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -11,69 +11,37 @@
     body { font-family: 'Cormorant Garamond', Georgia, serif; background: #F5F3EE; color: #1a1a1a; position: relative; }
 
     .site-header {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      background: transparent;
-      padding: 14px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      z-index: 10;
+      position: absolute; top: 0; left: 0; right: 0;
+      background: transparent; padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; z-index: 10;
     }
-
-    .logo-group {
-      display: flex; align-items: center; gap: 16px;
-      flex-shrink: 0; text-decoration: none;
-    }
-
- 
-    .site-name {
-      color: white; font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 28px; font-weight: 600; letter-spacing: 0.06em;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
-    }
-
+    .logo-group { display: flex; align-items: center; gap: 16px; flex-shrink: 0; text-decoration: none; }
+    .site-logo { width: 120px; height: 120px; object-fit: contain; background: transparent; border-radius: 0; padding: 0; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+    .site-name { color: white; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 600; letter-spacing: 0.06em; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
     .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-
     .lang-switcher { display: flex; gap: 6px; }
-
     .lang-btn {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.4);
-      color: rgba(255,255,255,0.6);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 13px; letter-spacing: 0.12em;
-      padding: 4px 10px; border-radius: 3px; cursor: pointer;
-      transition: all 0.2s;
+      background: transparent; border: 1px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.6); font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px; letter-spacing: 0.12em; padding: 4px 10px;
+      border-radius: 3px; cursor: pointer; transition: all 0.2s;
     }
-    .lang-btn:hover, .lang-btn.active {
-      border-color: white; color: white; background: rgba(255,255,255,0.1);
-    }
-
+    .lang-btn:hover, .lang-btn.active { border-color: white; color: white; background: rgba(255,255,255,0.1); }
     .nav-tabs { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-
     .tab {
       padding: 10px 20px; color: #1E2D7A; font-size: 15px; font-weight: 600;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      cursor: pointer; border: none; background: #C8D8FF; border-radius: 6px;
-      letter-spacing: 0.04em; box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-      white-space: nowrap; transition: background 0.15s;
-      text-decoration: none; display: inline-block;
+      font-family: 'Cormorant Garamond', Georgia, serif; cursor: pointer;
+      border: none; background: #C8D8FF; border-radius: 6px; letter-spacing: 0.04em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35); white-space: nowrap;
+      transition: background 0.15s; text-decoration: none; display: inline-block;
     }
     .tab:hover { background: #DDEAFF; }
-    .tab.active {
-      background: #DDEAFF; border-bottom: 3px solid #E07B00;
-      border-radius: 6px 6px 3px 3px;
-    }
+    .tab.active { background: #DDEAFF; border-bottom: 3px solid #E07B00; border-radius: 6px 6px 3px 3px; }
 
-    .hero-band {
-      width: 100%; height: 420px;
-      background: #1E2D7A url('background.jpeg') center 15% / cover no-repeat;
-    }
+    .hero-band { width: 100%; height: 420px; background: #1E2D7A url('background.jpeg') center 15% / cover no-repeat; }
 
-    .content-area { max-width: 860px; margin: 0 auto; padding: 48px 40px; }
+    .content-area { max-width: 960px; margin: 0 auto; padding: 48px 40px; }
 
     .page-title {
       font-size: 13px; color: #1E2D7A; text-transform: uppercase;
@@ -81,49 +49,59 @@
       border-left: 3px solid #C0392B; padding-left: 12px; margin-bottom: 32px;
     }
 
-    .proje-tabs { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
-
-    .proje-btn {
+    .alt-tabs { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+    .alt-btn {
       padding: 12px 28px; font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 16px; font-weight: 600; letter-spacing: 0.06em;
       cursor: pointer; border: 2px solid #1E2D7A; border-radius: 6px;
       background: transparent; color: #1E2D7A; transition: all 0.2s;
     }
-    .proje-btn:hover { background: #1E2D7A; color: white; }
-    .proje-btn.active { background: #1E2D7A; color: white; }
+    .alt-btn:hover, .alt-btn.active { background: #1E2D7A; color: white; }
 
-    .proje-panel { display: none; }
-    .proje-panel.active { display: block; }
+    .panel { display: none; }
+    .panel.active { display: block; }
 
-    .proje-label { font-size: 12px; color: #999; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
-    .proje-baslik { font-size: 32px; font-weight: 700; color: #1E2D7A; margin-bottom: 8px; line-height: 1.2; }
-    .bolum { margin-bottom: 32px; }
-    .bolum-baslik {
-      font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
-      font-weight: 700; color: #C0392B; margin-bottom: 12px;
-      padding-bottom: 6px; border-bottom: 1px solid #e0dbd2;
+    .sanatci-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px; }
+
+    .sanatci-kart {
+      background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08); cursor: pointer; transition: box-shadow 0.2s;
     }
-    .program-listesi { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .program-listesi li {
-      font-size: 17px; line-height: 1.5; color: #2a2a2a;
-      padding-left: 16px; position: relative;
+    .sanatci-kart:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+    .kart-foto { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block; }
+    .kart-foto-placeholder { width: 100%; aspect-ratio: 3/4; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #999; font-size: 13px; }
+
+    .kart-bilgi { padding: 16px 20px; }
+    .kart-ad { font-size: 20px; font-weight: 600; color: #1E2D7A; margin-bottom: 4px; }
+    .kart-enstruman { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #C0392B; }
+
+    .nk-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); z-index: 1000;
+      align-items: flex-start; justify-content: center;
+      padding: 40px 20px; overflow-y: auto;
     }
-    .program-listesi li::before { content: '—'; position: absolute; left: 0; color: #C0392B; }
-    .program-listesi li em { font-style: italic; }
-    .muzisyen-item { font-size: 16px; color: #2a2a2a; line-height: 1.5; }
-    .muzisyen-rol {
-      font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
-      color: #888; margin-bottom: 4px; margin-top: 16px; font-weight: 600;
+    .nk-modal-overlay.open { display: flex; }
+    .nk-modal { background: #F5F3EE; border-radius: 10px; max-width: 760px; width: 100%; overflow: hidden; position: relative; }
+    .nk-modal-kapat {
+      position: absolute; top: 16px; right: 16px; background: #1E2D7A;
+      color: white; border: none; width: 32px; height: 32px;
+      border-radius: 50%; font-size: 18px; cursor: pointer; line-height: 32px; text-align: center; z-index: 10;
     }
-    .aciklama-metin { font-size: 17px; line-height: 1.85; color: #2a2a2a; margin-bottom: 16px; }
-    .ayirici { border: none; border-top: 1px solid #ddd8d0; margin: 32px 0; }
+    .nk-modal-ust { display: flex; }
+    .nk-modal-foto { width: 240px; flex-shrink: 0; object-fit: cover; object-position: top; }
+    .nk-modal-foto-placeholder { width: 240px; flex-shrink: 0; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #999; font-size: 13px; min-height: 300px; }
+    .nk-modal-baslik { padding: 28px 32px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .nk-modal-ad { font-size: 28px; font-weight: 700; color: #1E2D7A; margin-bottom: 6px; }
+    .nk-modal-enstruman { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #C0392B; }
+    .nk-modal-biyografi { padding: 24px 32px; border-top: 1px solid #e0dbd2; }
+    .nk-modal-biyografi p { font-size: 16px; line-height: 1.85; color: #2a2a2a; margin-bottom: 12px; }
+    .nk-modal-biyografi p:last-child { margin-bottom: 0; }
 
     .site-footer { background: #1E2D7A; padding: 24px 40px; margin-top: 48px; }
     .footer-contacts { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
-    .contact-row {
-      display: flex; align-items: center; gap: 10px;
-      color: rgba(255,255,255,0.8); font-size: 15px; text-decoration: none;
-    }
+    .contact-row { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.8); font-size: 15px; text-decoration: none; }
     .contact-row:hover { color: white; }
     .contact-icon { width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-gmail { background: white; }
@@ -138,7 +116,9 @@
       .tab { padding: 8px 14px; font-size: 13px; }
       .hero-band { height: 200px; }
       .content-area { padding: 32px 20px; }
-      .proje-baslik { font-size: 24px; }
+      .sanatci-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+      .nk-modal-ust { flex-direction: column; }
+      .nk-modal-foto, .nk-modal-foto-placeholder { width: 100%; min-height: 280px; }
       .site-footer { padding: 20px; }
     }
   </style>
@@ -148,23 +128,20 @@
 <div class="hero-band"></div>
 
 <header class="site-header">
-  <a href="index.html" class="logo-group">
 
-  </a>
   <div class="header-right">
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('tr', this)">TR</button>
       <button class="lang-btn" onclick="setLang('en', this)">EN</button>
     </div>
     <nav class="nav-tabs">
-      <a href="sezon.html" class="tab active" data-tr="2026 / 2027 Sezonu" data-en="2026 / 2027 Season">2026 / 2027 Sezonu</a>
-      <a href="sanatcilar.html" class="tab" data-tr="Sanatçılar" data-en="Artists">Sanatçılar</a>
+      <a href="sezon.html" class="tab" data-tr="2026 / 2027 Sezonu" data-en="2026 / 2027 Season">2026 / 2027 Sezonu</a>
+      <a href="sanatcilar.html" class="tab active" data-tr="Sanatçılar" data-en="Artists">Sanatçılar</a>
       <a href="medya.html" class="tab" data-tr="Medya" data-en="Media">Medya</a>
 	  <a href="index.html" class="tab" data-tr="Ana Sayfa" data-en="Main Page">Ana Sayfa</a>
     </nav>
   </div>
 </header>
-
 
 <main class="content-area">
   <div class="page-title" data-tr="Sanatçılar" data-en="Artists">Sanatçılar</div>
