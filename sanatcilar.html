@@ -75,28 +75,28 @@
     .kart-ad { font-size: 20px; font-weight: 600; color: #1E2D7A; margin-bottom: 4px; }
     .kart-enstruman { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #C0392B; }
 
-    .modal-overlay {
+    .nk-modal-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.7); z-index: 1000;
       align-items: flex-start; justify-content: center;
       padding: 40px 20px; overflow-y: auto;
     }
-    .modal-overlay.open { display: flex; }
-    .modal { background: #F5F3EE; border-radius: 10px; max-width: 760px; width: 100%; overflow: hidden; position: relative; }
-    .modal-kapat {
+    .nk-modal-overlay.open { display: flex; }
+    .nk-modal { background: #F5F3EE; border-radius: 10px; max-width: 760px; width: 100%; overflow: hidden; position: relative; }
+    .nk-modal-kapat {
       position: absolute; top: 16px; right: 16px; background: #1E2D7A;
       color: white; border: none; width: 32px; height: 32px;
       border-radius: 50%; font-size: 18px; cursor: pointer; line-height: 32px; text-align: center; z-index: 10;
     }
-    .modal-ust { display: flex; }
-    .modal-foto { width: 240px; flex-shrink: 0; object-fit: cover; object-position: top; }
-    .modal-foto-placeholder { width: 240px; flex-shrink: 0; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #999; font-size: 13px; min-height: 300px; }
-    .modal-baslik { padding: 28px 32px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .modal-ad { font-size: 28px; font-weight: 700; color: #1E2D7A; margin-bottom: 6px; }
-    .modal-enstruman { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #C0392B; }
-    .modal-biyografi { padding: 24px 32px; border-top: 1px solid #e0dbd2; }
-    .modal-biyografi p { font-size: 16px; line-height: 1.85; color: #2a2a2a; margin-bottom: 12px; }
-    .modal-biyografi p:last-child { margin-bottom: 0; }
+    .nk-modal-ust { display: flex; }
+    .nk-modal-foto { width: 240px; flex-shrink: 0; object-fit: cover; object-position: top; }
+    .nk-modal-foto-placeholder { width: 240px; flex-shrink: 0; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #999; font-size: 13px; min-height: 300px; }
+    .nk-modal-baslik { padding: 28px 32px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .nk-modal-ad { font-size: 28px; font-weight: 700; color: #1E2D7A; margin-bottom: 6px; }
+    .nk-modal-enstruman { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #C0392B; }
+    .nk-modal-biyografi { padding: 24px 32px; border-top: 1px solid #e0dbd2; }
+    .nk-modal-biyografi p { font-size: 16px; line-height: 1.85; color: #2a2a2a; margin-bottom: 12px; }
+    .nk-modal-biyografi p:last-child { margin-bottom: 0; }
 
     .site-footer { background: #1E2D7A; padding: 24px 40px; margin-top: 48px; }
     .footer-contacts { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -116,8 +116,8 @@
       .hero-band { height: 200px; }
       .content-area { padding: 32px 20px; }
       .sanatci-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-      .modal-ust { flex-direction: column; }
-      .modal-foto, .modal-foto-placeholder { width: 100%; min-height: 280px; }
+      .nk-modal-ust { flex-direction: column; }
+      .nk-modal-foto, .nk-modal-foto-placeholder { width: 100%; min-height: 280px; }
       .site-footer { padding: 20px; }
     }
   </style>
@@ -161,17 +161,17 @@
   </div>
 </main>
 
-<div class="modal-overlay" id="modal" onclick="modalKapat(event)">
-  <div class="modal" id="modal-icerik">
-    <button class="modal-kapat" onclick="document.getElementById('modal').classList.remove('open'); document.body.style.overflow='';">×</button>
-    <div class="modal-ust">
-      <div id="modal-foto-alani"></div>
-      <div class="modal-baslik">
-        <div class="modal-ad" id="modal-ad"></div>
-        <div class="modal-enstruman" id="modal-enstruman"></div>
+<div class="nk-modal-overlay" id="nk-modal" onclick="modalKapat(event)">
+  <div class="nk-modal" id="nk-modal-icerik">
+    <button class="nk-modal-kapat" onclick="document.getElementById('nk-modal').classList.remove('open'); document.body.style.overflow='';">×</button>
+    <div class="nk-modal-ust">
+      <div id="nk-modal-foto-alani"></div>
+      <div class="nk-modal-baslik">
+        <div class="nk-modal-ad" id="nk-modal-ad"></div>
+        <div class="nk-modal-enstruman" id="nk-modal-enstruman"></div>
       </div>
     </div>
-    <div class="modal-biyografi" id="modal-bio"></div>
+    <div class="nk-modal-biyografi" id="nk-modal-bio"></div>
   </div>
 </div>
 
@@ -275,23 +275,23 @@ function kartOlustur(s) {
 }
 
 function modalAc(s) {
-  document.getElementById('modal-ad').textContent = s.ad;
-  document.getElementById('modal-enstruman').textContent = currentLang === 'tr' ? s.enstruman_tr : s.enstruman_en;
-  const fotoAlani = document.getElementById('modal-foto-alani');
+  document.getElementById('nk-modal-ad').textContent = s.ad;
+  document.getElementById('nk-modal-enstruman').textContent = currentLang === 'tr' ? s.enstruman_tr : s.enstruman_en;
+  const fotoAlani = document.getElementById('nk-modal-foto-alani');
   fotoAlani.innerHTML = s.foto
-    ? `<img class="modal-foto" src="${s.foto}" alt="${s.ad}">`
-    : `<div class="modal-foto-placeholder">—</div>`;
-  const bioDiv = document.getElementById('modal-bio');
+    ? `<img class="nk-modal-foto" src="${s.foto}" alt="${s.ad}">`
+    : `<div class="nk-modal-foto-placeholder">—</div>`;
+  const bioDiv = document.getElementById('nk-modal-bio');
   const bio = currentLang === 'tr' ? s.bio_tr : s.bio_en;
   bioDiv.innerHTML = bio.split('<br><br>').map(p => `<p>${p}</p>`).join('');
-  document.getElementById('modal').classList.add('open');
+  document.getElementById('nk-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
-  document.getElementById('modal').dataset.sanatci = s.ad;
+  document.getElementById('nk-modal').dataset.sanatci = s.ad;
 }
 
 function modalKapat(e) {
-  if (e.target === document.getElementById('modal')) {
-    document.getElementById('modal').classList.remove('open');
+  if (e.target === document.getElementById('nk-modal')) {
+    document.getElementById('nk-modal').classList.remove('open');
     document.body.style.overflow = '';
   }
 }
@@ -319,14 +319,14 @@ function setLang(lang, btn) {
     if (s) el.textContent = lang === 'tr' ? s.enstruman_tr : s.enstruman_en;
   });
   // Açık modal varsa güncelle
-  const modal = document.getElementById('modal');
+  const modal = document.getElementById('nk-modal');
   if (modal.classList.contains('open')) {
-    const ad = modal.dataset.sanatci;
+    const ad = nk_modal.dataset.sanatci;
     const s = [...icracilar, ...besteciler].find(x => x.ad === ad);
     if (s) {
-      document.getElementById('modal-enstruman').textContent = lang === 'tr' ? s.enstruman_tr : s.enstruman_en;
+      document.getElementById('nk-modal-enstruman').textContent = lang === 'tr' ? s.enstruman_tr : s.enstruman_en;
       const bio = lang === 'tr' ? s.bio_tr : s.bio_en;
-      document.getElementById('modal-bio').innerHTML = bio.split('<br><br>').map(p => `<p>${p}</p>`).join('');
+      document.getElementById('nk-modal-bio').innerHTML = bio.split('<br><br>').map(p => `<p>${p}</p>`).join('');
     }
   }
   document.documentElement.lang = lang;
