@@ -8,38 +8,79 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cormorant Garamond', Georgia, serif; background: #F5F3EE; color: #1a1a1a; }
+    body { font-family: 'Cormorant Garamond', Georgia, serif; background: #F5F3EE; color: #1a1a1a; position: relative; }
 
+    /* ── HEADER — sezon.html ile birebir aynı ── */
     .site-header {
-      background: #1E2D7A; padding: 14px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: transparent;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      z-index: 10;
     }
-    .logo-group { display: flex; align-items: center; gap: 16px; flex-shrink: 0; text-decoration: none; }
-    .site-logo { width: 144px; height: 144px; object-fit: contain; background: white; border-radius: 8px; padding: 6px; }
-    .site-name { color: white; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 600; letter-spacing: 0.06em; }
+
+    .logo-group {
+      display: flex; align-items: center; gap: 16px;
+      flex-shrink: 0; text-decoration: none;
+    }
+
+    .site-logo {
+      width: 120px; height: 120px; object-fit: contain;
+      background: transparent; border-radius: 0; padding: 0;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+
+    .site-name {
+      color: white; font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px; font-weight: 600; letter-spacing: 0.06em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+
     .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
     .lang-switcher { display: flex; gap: 6px; }
+
     .lang-btn {
-      background: transparent; border: 1px solid rgba(255,255,255,0.4);
-      color: rgba(255,255,255,0.6); font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 13px; letter-spacing: 0.12em; padding: 4px 10px;
-      border-radius: 3px; cursor: pointer; transition: all 0.2s;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.6);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px; letter-spacing: 0.12em;
+      padding: 4px 10px; border-radius: 3px; cursor: pointer;
+      transition: all 0.2s;
     }
-    .lang-btn:hover, .lang-btn.active { border-color: white; color: white; background: rgba(255,255,255,0.1); }
+    .lang-btn:hover, .lang-btn.active {
+      border-color: white; color: white; background: rgba(255,255,255,0.1);
+    }
+
     .nav-tabs { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
     .tab {
       padding: 10px 20px; color: #1E2D7A; font-size: 15px; font-weight: 600;
-      font-family: 'Cormorant Garamond', Georgia, serif; cursor: pointer;
-      border: none; background: #C8D8FF; border-radius: 6px; letter-spacing: 0.04em;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.35); white-space: nowrap;
-      transition: background 0.15s; text-decoration: none; display: inline-block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      cursor: pointer; border: none; background: #C8D8FF; border-radius: 6px;
+      letter-spacing: 0.04em; box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      white-space: nowrap; transition: background 0.15s;
+      text-decoration: none; display: inline-block;
     }
     .tab:hover { background: #DDEAFF; }
-    .tab.active { background: #DDEAFF; border-bottom: 3px solid #E07B00; border-radius: 6px 6px 3px 3px; }
+    .tab.active {
+      background: #DDEAFF; border-bottom: 3px solid #E07B00;
+      border-radius: 6px 6px 3px 3px;
+    }
 
-    .hero-band { width: 100%; height: 340px; background: #1E2D7A url('background.jpeg') center center / cover no-repeat; }
+    /* ── HERO — sezon.html ile birebir aynı ── */
+    .hero-band {
+      width: 100%; height: 420px;
+      background: #1E2D7A url('background.jpeg') center 15% / cover no-repeat;
+    }
 
+    /* ── İÇERİK ── */
     .content-area { max-width: 960px; margin: 0 auto; padding: 48px 40px; }
 
     .page-title {
@@ -75,6 +116,7 @@
     .kart-ad { font-size: 20px; font-weight: 600; color: #1E2D7A; margin-bottom: 4px; }
     .kart-enstruman { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #C0392B; }
 
+    /* ── MODAL ── */
     .nk-modal-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.7); z-index: 1000;
@@ -98,6 +140,7 @@
     .nk-modal-biyografi p { font-size: 16px; line-height: 1.85; color: #2a2a2a; margin-bottom: 12px; }
     .nk-modal-biyografi p:last-child { margin-bottom: 0; }
 
+    /* ── FOOTER ── */
     .site-footer { background: #1E2D7A; padding: 24px 40px; margin-top: 48px; }
     .footer-contacts { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
     .contact-row { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.8); font-size: 15px; text-decoration: none; }
@@ -107,6 +150,7 @@
     .icon-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
     .icon-spotify { background: #1DB954; }
 
+    /* ── MOBİL ── */
     @media (max-width: 640px) {
       .site-header { padding: 14px 20px; flex-direction: column; align-items: flex-start; }
       .site-logo { width: 100px; height: 100px; }
@@ -128,7 +172,7 @@
 
 <header class="site-header">
   <a href="index.html" class="logo-group">
-    
+
   </a>
   <div class="header-right">
     <div class="lang-switcher">
@@ -139,6 +183,7 @@
       <a href="sezon.html" class="tab" data-tr="2026 / 2027 Sezonu" data-en="2026 / 2027 Season">2026 / 2027 Sezonu</a>
       <a href="sanatcilar.html" class="tab active" data-tr="Sanatçılar" data-en="Artists">Sanatçılar</a>
       <a href="medya.html" class="tab" data-tr="Medya" data-en="Media">Medya</a>
+      <a href="index.html" class="tab" data-tr="Ana Sayfa" data-en="Main Page">Ana Sayfa</a>
     </nav>
   </div>
 </header>
@@ -241,7 +286,7 @@ const icracilar = [
     bio_tr: "Arda Aykut 2002 yılında Ankara'da doğdu. 2021 yılından itibaren UdK Berlin'de Prof. Julia Rebekka-Brembeck Adler ile solo lisans ve ardından master eğitimine devam etmektedir. Artemis Quartet'ten Vineta Sareika ve Gregor Sigl ile oda müziği eğitimi almıştır.<br><br>Berlin Philharmonie, Konzerthaus, München Herkulessaal ve Salzburg'da konserler vermiş; Sir Simon Rattle ile çalışma fırsatı bulmuştur. Üyesi olduğu Varyon Quartet ile Japonya'da Munetsugu Hall String Quartet Competition'da ve Almanya'da 1.lik ödülleri kazanmıştır.<br><br>Lisans eğitimini UdK Berlin'de en üst dereceyle tamamlamış olup eğitimi Dr. Herbert und Anne-Marie Lembcke Ad-Infinitum-Foundation ve Kurt und Felicitas Vössing Stiftung vakıfları tarafından desteklenmektedir.",
     bio_en: "Arda Aykut was born in 2002 in Ankara and has been studying at UdK Berlin with Prof. Julia Rebekka-Brembeck Adler since 2021, first in undergraduate and then master's studies. He has received chamber music coaching from Artemis Quartet members Vineta Sareika and Gregor Sigl.<br><br>He has performed at the Berlin Philharmonie, Konzerthaus, Munich Herkulessaal and in Salzburg, and has had the opportunity to work with Sir Simon Rattle. With his ensemble Varyon Quartet he has won first prizes in Japan at Munetsugu Hall String Quartet Competition and in Germany.<br><br>He completed his undergraduate degree at UdK Berlin with the highest distinction, and his studies are supported by the Dr. Herbert und Anne-Marie Lembcke Ad-Infinitum-Foundation and the Kurt und Felicitas Vössing Stiftung." },
   { ad: "Beste Yıldız", enstruman_tr: "Viyolonsel", enstruman_en: "Cello", foto: "photos/beste_yildiz.jpg",
-    bio_tr: "Beste Yıldız 2001 yılında Adana'da doğdu. 2019 yılında Den Haag Kraliyet Konservatuvarı'nda Larissa Groeneveld'in sınıfına kabul edildi. Yüksek Lisansını ayrıcalık ödülü ile tamamladı; Dr. Nejat Eczacıbaşı Vakfı müzik bursiyeri ve Den Haag Kraliyet Konservatuvarı 'Excellence Scholarship' bursiyeri olmuştur.<br><br>Ankara Müzik Festivali, Delft Chamber Music Festival ve Cellowercken Zutphen kapsamında sahne almıştır. Hollanda Ulusal Gençlik Orkestrası'nın başçellisti olarak konserler vermiştir.<br><br>Rotterdam Filarmoni Orkestrası'nın orkestra akademisi programına seçilmiş olup 2026–2027 sezonunda akademisyen sanatçı olarak konserler verecektir. The Netherlands Musical Instrument Foundation tarafından kendisine verilen 1870 Gaetano Chiocchi yapımı İtalyan çellosunu çalmaktadır.",
+    bio_tr: "Beste Yıldız 2001 yılında Adana'da doğdu. 2019 yılında Den Haag Kraliyet Konservatuvarı'nda Larissa Groeneveld'in sınıfına kabul edildi. Yüksek Lisansını ayrıcalık ödülü ile tamamladı; Dr. Nejat Eczacıbaşı Vakfı müzik bursiyeri ve Den Haag Kraliyet Konservatuvarı 'Excellence Scholarship' bursiyeridir.<br><br>Ankara Müzik Festivali, Delft Chamber Music Festival ve Cellowercken Zutphen kapsamında sahne almıştır. Hollanda Ulusal Gençlik Orkestrası'nın başçellisti olarak konserler vermiştir.<br><br>Rotterdam Filarmoni Orkestrası'nın orkestra akademisi programına seçilmiş olup 2026–2027 sezonunda akademisyen sanatçı olarak konserler verecektir. The Netherlands Musical Instrument Foundation tarafından kendisine verilen 1870 Gaetano Chiocchi yapımı İtalyan çellosunu çalmaktadır.",
     bio_en: "Beste Yıldız was born in 2001 in Adana. In 2019 she was admitted to the class of Larissa Groeneveld at the Royal Conservatoire of The Hague, where she completed her master's degree with distinction. She holds scholarships from the Dr. Nejat Eczacıbaşı Foundation and the Royal Conservatoire of The Hague Excellence Scholarship.<br><br>She has performed at the Ankara Music Festival, the Delft Chamber Music Festival and Cellowercken Zutphen, and served as principal cellist of the Netherlands National Youth Orchestra.<br><br>Selected for the Rotterdam Philharmonic Orchestra's academy programme, she will perform as an academy artist during the 2026–2027 season. She plays on an 1870 Italian cello by Gaetano Chiocchi, kindly loaned by The Netherlands Musical Instrument Foundation." },
   { ad: "Berkay Azıtepe", enstruman_tr: "Viyolonsel", enstruman_en: "Cello", foto: "photos/berkay_azitepe.jpg",
     bio_tr: "2003 yılında Ankara'da doğan Berkay Azıtepe, 2025 yılında Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'ndan yüksek dereceyle mezun oldu. 2024 yılından bu yana İstanbul Devlet Senfoni Orkestrası'nda viyolonsel sanatçısı olarak görev yapmaktadır.<br><br>Türkiye Gençlik Filarmoni Orkestrası ile Prag Rudolfinum ve Berlin Konzerthaus'ta konser vermiştir. Pan-Caucasian Youth Orchestra ile Tsinandali Festivali'ne, Musica Mundi Festivali'ne yüksek bursla katılmıştır. Thomas Kuti Viyolonsel Yarışması Türkiye etabında birincilik elde ederek Dublin'de Türkiye'yi temsil etmiştir.<br><br>Sascha Goetzel, Howard Griffiths ve Andreas Ottensamer gibi şeflerle çalışmış; İstanbul Filarmoni Derneği Quartet'in çellisti olmuştur.",
@@ -264,6 +309,12 @@ const besteciler = [
   { ad: "Ege Gür", enstruman_tr: "Besteci", enstruman_en: "Composer", foto: "photos/ege_gur.jpg",
     bio_tr: "Ege Gür Türk çağdaş müzik bestecisidir. Türkiye Gençlik Filarmoni Orkestrası ile Berlin Konzerthaus ve Amsterdam Concertgebouw'da kendi eserini yönetmiş; bu icraları ile 2024 Avrupa Bestecilik Ödülü'nü kazanmıştır. Yaptığı film müzikleriyle 2024 İzmir Uluslararası Film ve Müzik Festivali'nde En İyi Özgün Film Müziği Ödülü'nü kazanmıştır. 2023 yılında Cumhuriyetin 100. Yılı anısına Akdeniz Opera Bale Derneği tarafından Genç Türk Bestecisi Ödülü ile onurlandırılmıştır.<br><br>1998 yılında İstanbul'da doğan Gür, Hacettepe Üniversitesi Ankara Devlet Konservatuvarı'nda Sıdıka Özdil ve Turgay Erdener ile kompozisyon çalışmalarını sürdürdü. 2021 yılında Yüksek Şeref Öğrencisi olarak mezun oldu. MSGSÜ İstanbul Devlet Konservatuvarı'nda Özkan Manav ile yüksek lisansını 2024'te tamamladı ve aynı kurumda öğretim görevlisi olarak ders vermeye başladı. Müzik çalışmalarının yanı sıra sinema ve edebiyat alanlarında da eserler üretmektedir.",
     bio_en: "Ege Gür is a Turkish contemporary music composer. He has conducted his own works with the Turkey Youth Philharmonic Orchestra at the Berlin Konzerthaus and Amsterdam Concertgebouw, performances for which he received the 2024 European Composition Award. His film scores earned him the Best Original Film Score Award at the 2024 Izmir International Film and Music Festival. In 2023, on the occasion of the centenary of the Republic, he was honoured with the Young Turkish Composer Award by the Mediterranean Opera Ballet Association.<br><br>Born in 1998 in Istanbul, Gür studied composition at Hacettepe University Ankara State Conservatory with Sıdıka Özdil and Turgay Erdener, graduating with High Honours in 2021. He then completed his master's degree at MSGSÜ Istanbul State Conservatory with Özkan Manav in 2024, after which he began teaching at the same institution. Alongside his musical work, he creates works in cinema and literature." }
+];
+
+const sefler = [
+  { ad: "Kerem Tunçer", enstruman_tr: "Şef", enstruman_en: "Conductor", foto: "photos/kerem_tuncer.jpg",
+    bio_tr: "1997 yılında Bursa'da doğan Kerem Tunçer, küçük yaşlarda keman ve kompozisyon eğitimine başladı. Henüz 18 yaşına kadar Türkiye genelinde 20'den fazla şehirde sahneye çıktı ve ülkenin önde gelen orkestralarıyla solist olarak konserler verdi.<br><br>2014 yılında Belçika'daki Arthur Grumiaux Uluslararası Keman Yarışması'nda Birincilik Ödülü'nü kazandı. 2013–2015 yılları arasında Bilkent Gençlik Senfoni Orkestrası ve Ankara Gençlik Senfoni Orkestrası'nın başkemancılığını üstlendi. 2015 yılında Daniel Barenboim tarafından seçilerek Berlin'de kurulan Barenboim-Said Akademie'nin ilk 13 öğrencisinden biri oldu. Akademiden 2019 yılında en yüksek dereceyle mezun olarak kurumun ilk Türk mezunu unvanını aldı.<br><br>Doğu-Batı Divan Orkestrası ve Boulez Ensemble üyesi olarak Daniel Barenboim yönetiminde Carnegie Hall, Berlin Filarmoni, Paris Filarmoni, Royal Albert Hall, La Scala, Elbphilharmonie, Walt Disney Hall, Lincoln Center, BOZAR Brüksel, Pierre Boulez Saal ve Berlin Waldbühne gibi dünyanın önde gelen salonlarında sahne aldı; BBC Proms, Salzburg, Luzern, Rheingau, Bremen ve Schleswig-Holstein festivallerine katıldı. Lang Lang, Anne-Sophie Mutter, Martha Argerich, Yo-Yo Ma, Lisa Batiashvili, Antonio Pappano ve Zubin Mehta gibi sanatçılarla aynı sahneyi paylaştı.<br><br>Şeflik çalışmalarını Hannover Müzik, Tiyatro ve Medya Yüksekokulu'nda Prof. Eiji Oue ile sürdüren Tunçer; Eiji Oue, Howard Griffiths, Michael Sanderling, Cem Mansur ve İbrahim Yazıcı'nın asistanlığını yaptı. Finlandiya'daki prestijli Panula Akademisi'ne kabul edilerek Jorma Panula ile birçok kez çalışma fırsatı buldu.<br><br>Bugüne kadar Deutsches Symphonie-Orchester Berlin, Brandenburgisches Staatsorchester Frankfurt (Oder), Nürnberger Symphoniker, İstanbul Devlet Senfoni Orkestrası, Theater Magdeburg ve Berliner Sinfonietta'yı yönetti. 2024'ten bu yana Hezarfen Ensemble ile Türkiye ve Avrupa'da konserler vermektedir. Mart 2026'da Alman Müzik Konseyi'nin Forum Dirigieren ağına seçilmiş, Berlin Filarmoni Karajan Akademisi'nin Siemens Şeflik Bursu'nun 3 finalistinden biri olmuştur.<br><br>Yüksek lisans çalışmalarını ÇEV Sanat'ın desteğiyle Berlin Sanat Üniversitesi'nde Prof. Harry Curtis'ın sınıfında orkestra şefliği alanında sürdürmektedir.",
+    bio_en: "Born in 1997 in Bursa, Kerem Tunçer began his violin and composition studies at an early age. By the age of 18 he had already performed in over 20 cities across Turkey, giving concerts as a soloist with the country's leading orchestras.<br><br>In 2014 he won First Prize at the Arthur Grumiaux International Violin Competition in Belgium. Between 2013 and 2015 he served as concertmaster of the Bilkent Youth Symphony Orchestra and the Ankara Youth Symphony Orchestra. In 2015 he was selected by Daniel Barenboim as one of the first 13 students of the newly founded Barenboim-Said Akademie in Berlin, graduating with the highest distinction in 2019 as the institution's first Turkish alumnus.<br><br>As a member of the West-Eastern Divan Orchestra and Boulez Ensemble under Daniel Barenboim, he has performed at Carnegie Hall, the Berlin Philharmonie, Paris Philharmonie, Royal Albert Hall, La Scala, Elbphilharmonie, Walt Disney Hall, Lincoln Center, BOZAR Brussels, Pierre Boulez Saal and the Berlin Waldbühne, and has participated in the BBC Proms, Salzburg, Lucerne, Rheingau, Bremen and Schleswig-Holstein festivals. He has shared the stage with Lang Lang, Anne-Sophie Mutter, Martha Argerich, Yo-Yo Ma, Lisa Batiashvili, Antonio Pappano and Zubin Mehta, among others.<br><br>He pursued his conducting studies with Prof. Eiji Oue at the Hochschule für Musik, Theater und Medien Hannover, serving as assistant to Eiji Oue, Howard Griffiths, Michael Sanderling, Cem Mansur and İbrahim Yazıcı. He was admitted to the prestigious Panula Academy in Finland, where he worked closely with Jorma Panula on multiple occasions.<br><br>He has conducted the Deutsches Symphonie-Orchester Berlin, Brandenburgisches Staatsorchester Frankfurt (Oder), Nürnberger Symphoniker, Istanbul State Symphony Orchestra, Theater Magdeburg and Berliner Sinfonietta. Since 2024 he has collaborated with Hezarfen Ensemble, giving concerts in Turkey and Europe. In March 2026 he was selected for Forum Dirigieren, the German Music Council's conductor support network, and has recently been named one of three finalists for the Berlin Philharmonic Karajan Academy's Siemens Conducting Fellowship.<br><br>He is pursuing his master's degree in orchestral conducting in the class of Prof. Harry Curtis at the Berlin University of the Arts, with the generous support of ÇEV Sanat." }
 ];
 
 function kartOlustur(s) {
@@ -318,14 +369,12 @@ function setLang(lang, btn) {
     const val = el.getAttribute('data-' + lang);
     if (val) el.innerHTML = val;
   });
-  // Kartlardaki enstrüman etiketlerini güncelle
   document.querySelectorAll('.kart-enstruman').forEach(el => {
     const key = el.dataset.key;
     const ad = key.replace('_enstruman', '');
     const s = [...icracilar, ...besteciler, ...sefler].find(x => x.ad === ad);
     if (s) el.textContent = lang === 'tr' ? s.enstruman_tr : s.enstruman_en;
   });
-  // Açık modal varsa güncelle
   const modal = document.getElementById('nk-modal');
   if (modal.classList.contains('open')) {
     const ad = modal.dataset.sanatci;
@@ -339,13 +388,6 @@ function setLang(lang, btn) {
   document.documentElement.lang = lang;
 }
 
-const sefler = [
-  { ad: "Kerem Tunçer", enstruman_tr: "Şef", enstruman_en: "Conductor", foto: "photos/kerem_tuncer.jpg",
-    bio_tr: "1997 yılında Bursa'da doğan Kerem Tunçer, küçük yaşlarda keman ve kompozisyon eğitimine başladı. Henüz 18 yaşına kadar Türkiye genelinde 20'den fazla şehirde sahneye çıktı ve ülkenin önde gelen orkestralarıyla solist olarak konserler verdi.<br><br>2014 yılında Belçika'daki Arthur Grumiaux Uluslararası Keman Yarışması'nda Birincilik Ödülü'nü kazandı. 2013–2015 yılları arasında Bilkent Gençlik Senfoni Orkestrası ve Ankara Gençlik Senfoni Orkestrası'nın başkemancılığını üstlendi. 2015 yılında Daniel Barenboim tarafından seçilerek Berlin'de kurulan Barenboim-Said Akademie'nin ilk 13 öğrencisinden biri oldu. Akademiden 2019 yılında en yüksek dereceyle mezun olarak kurumun ilk Türk mezunu unvanını aldı.<br><br>Doğu-Batı Divan Orkestrası ve Boulez Ensemble üyesi olarak Daniel Barenboim yönetiminde Carnegie Hall, Berlin Filarmoni, Paris Filarmoni, Royal Albert Hall, La Scala, Elbphilharmonie, Walt Disney Hall, Lincoln Center, BOZAR Brüksel, Pierre Boulez Saal ve Berlin Waldbühne gibi dünyanın önde gelen salonlarında sahne aldı; BBC Proms, Salzburg, Luzern, Rheingau, Bremen ve Schleswig-Holstein festivallerine katıldı. Lang Lang, Anne-Sophie Mutter, Martha Argerich, Yo-Yo Ma, Lisa Batiashvili, Antonio Pappano ve Zubin Mehta gibi sanatçılarla aynı sahneyi paylaştı.<br><br>Şeflik çalışmalarını Hannover Müzik, Tiyatro ve Medya Yüksekokulu'nda Prof. Eiji Oue ile sürdüren Tunçer; Eiji Oue, Howard Griffiths, Michael Sanderling, Cem Mansur ve İbrahim Yazıcı'nın asistanlığını yaptı. Finlandiya'daki prestijli Panula Akademisi'ne kabul edilerek Jorma Panula ile birçok kez çalışma fırsatı buldu.<br><br>Bugüne kadar Deutsches Symphonie-Orchester Berlin, Brandenburgisches Staatsorchester Frankfurt (Oder), Nürnberger Symphoniker, İstanbul Devlet Senfoni Orkestrası, Theater Magdeburg ve Berliner Sinfonietta'yı yönetti. 2024'ten bu yana Hezarfen Ensemble ile Türkiye ve Avrupa'da konserler vermektedir. Mart 2026'da Alman Müzik Konseyi'nin Forum Dirigieren ağına seçilmiş, Berlin Filarmoni Karajan Akademisi'nin Siemens Şeflik Bursu'nun 3 finalistinden biri olmuştur.<br><br>Yüksek lisans çalışmalarını ÇEV Sanat'ın desteğiyle Berlin Sanat Üniversitesi'nde Prof. Harry Curtis'ın sınıfında orkestra şefliği alanında sürdürmektedir.",
-    bio_en: "Born in 1997 in Bursa, Kerem Tunçer began his violin and composition studies at an early age. By the age of 18 he had already performed in over 20 cities across Turkey, giving concerts as a soloist with the country's leading orchestras.<br><br>In 2014 he won First Prize at the Arthur Grumiaux International Violin Competition in Belgium. Between 2013 and 2015 he served as concertmaster of the Bilkent Youth Symphony Orchestra and the Ankara Youth Symphony Orchestra. In 2015 he was selected by Daniel Barenboim as one of the first 13 students of the newly founded Barenboim-Said Akademie in Berlin, graduating with the highest distinction in 2019 as the institution's first Turkish alumnus.<br><br>As a member of the West-Eastern Divan Orchestra and Boulez Ensemble under Daniel Barenboim, he has performed at Carnegie Hall, the Berlin Philharmonie, Paris Philharmonie, Royal Albert Hall, La Scala, Elbphilharmonie, Walt Disney Hall, Lincoln Center, BOZAR Brussels, Pierre Boulez Saal and the Berlin Waldbühne, and has participated in the BBC Proms, Salzburg, Lucerne, Rheingau, Bremen and Schleswig-Holstein festivals. He has shared the stage with Lang Lang, Anne-Sophie Mutter, Martha Argerich, Yo-Yo Ma, Lisa Batiashvili, Antonio Pappano and Zubin Mehta, among others.<br><br>He pursued his conducting studies with Prof. Eiji Oue at the Hochschule für Musik, Theater und Medien Hannover, serving as assistant to Eiji Oue, Howard Griffiths, Michael Sanderling, Cem Mansur and İbrahim Yazıcı. He was admitted to the prestigious Panula Academy in Finland, where he worked closely with Jorma Panula on multiple occasions.<br><br>He has conducted the Deutsches Symphonie-Orchester Berlin, Brandenburgisches Staatsorchester Frankfurt (Oder), Nürnberger Symphoniker, Istanbul State Symphony Orchestra, Theater Magdeburg and Berliner Sinfonietta. Since 2024 he has collaborated with Hezarfen Ensemble, giving concerts in Turkey and Europe. In March 2026 he was selected for Forum Dirigieren, the German Music Council's conductor support network, and has recently been named one of three finalists for the Berlin Philharmonic Karajan Academy's Siemens Conducting Fellowship.<br><br>He is pursuing his master's degree in orchestral conducting in the class of Prof. Harry Curtis at the Berlin University of the Arts, with the generous support of ÇEV Sanat." }
-];
-
-// Kartları oluştur
 const ig = document.getElementById('icracilar-grid');
 icracilar.forEach(s => ig.appendChild(kartOlustur(s)));
 const bg = document.getElementById('besteciler-grid');
