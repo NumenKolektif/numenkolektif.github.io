@@ -115,7 +115,13 @@
     }
     .program-listesi li::before { content: '—'; position: absolute; left: 0; color: #C0392B; }
     .program-listesi li em { font-style: italic; }
-    .muzisyen-item { font-size: 16px; color: #2a2a2a; line-height: 1.5; }
+    .program-listesi li.ara {
+      font-size: 13px; color: #aaa; letter-spacing: 0.1em; text-transform: uppercase;
+      padding-left: 0; font-style: normal;
+    }
+    .program-listesi li.ara::before { content: ''; }
+
+    .muzisyen-item { font-size: 16px; color: #2a2a2a; line-height: 1.6; }
     .muzisyen-rol {
       font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
       color: #888; margin-bottom: 4px; margin-top: 16px; font-weight: 600;
@@ -135,37 +141,14 @@
     .icon-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
     .icon-spotify { background: #1DB954; }
 
-
     .paydas-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      align-items: center;
+      display: flex; flex-wrap: wrap; gap: 32px; align-items: center;
     }
+    .paydas-kart { display: flex; align-items: center; justify-content: center; }
+    .paydas-kart.tıklanabilir { cursor: pointer; transition: transform 0.2s, opacity 0.2s; }
+    .paydas-kart.tıklanabilir:hover { transform: scale(1.04); opacity: 0.85; }
+    .paydas-logo { height: 200px; width: auto; object-fit: contain; }
 
-    .paydas-kart {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .paydas-kart.tıklanabilir {
-      cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    .paydas-kart.tıklanabilir:hover {
-      transform: scale(1.04);
-      opacity: 0.85;
-    }
-
-    .paydas-logo {
-      height: 200px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    /* DAS MODAL */
     .das-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.75); z-index: 1000;
@@ -173,13 +156,11 @@
       padding: 40px 20px; overflow-y: auto;
     }
     .das-overlay.open { display: flex; }
-
     .das-modal {
       background: #F5F3EE; border-radius: 10px;
       max-width: 800px; width: 100%;
       overflow: hidden; position: relative;
     }
-
     .das-kapat {
       position: absolute; top: 16px; right: 16px;
       background: #1E2D7A; color: white; border: none;
@@ -187,66 +168,24 @@
       font-size: 18px; cursor: pointer; line-height: 32px;
       text-align: center; z-index: 10;
     }
-
-    .das-ust {
-      display: flex; gap: 0;
-    }
-
+    .das-ust { display: flex; gap: 0; }
     .das-foto-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      width: 280px;
-      flex-shrink: 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; width: 280px; flex-shrink: 0;
     }
-
-    .das-foto-grid img {
-      width: 100%; aspect-ratio: 1/1;
-      object-fit: cover;
-      display: block;
-    }
-
-    .das-baslik-alan {
-      padding: 28px 28px;
-      display: flex; flex-direction: column; justify-content: center;
-      flex: 1;
-    }
-
-    .das-baslik {
-      font-size: 22px; font-weight: 700;
-      color: #1E2D7A; margin-bottom: 6px;
-    }
-
-    .das-alt {
-      font-size: 15px; color: #C0392B;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-
-    .das-imza {
-      font-size: 15px; color: #555;
-      font-style: italic;
-    }
-
-    .das-metin {
-      padding: 24px 32px;
-      border-top: 1px solid #e0dbd2;
-    }
-
-    .das-metin p {
-      font-size: 16px; line-height: 1.85;
-      color: #2a2a2a; margin-bottom: 14px;
-    }
-
+    .das-foto-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+    .das-baslik-alan { padding: 28px 28px; display: flex; flex-direction: column; justify-content: center; flex: 1; }
+    .das-baslik { font-size: 22px; font-weight: 700; color: #1E2D7A; margin-bottom: 6px; }
+    .das-alt { font-size: 15px; color: #C0392B; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .das-imza { font-size: 15px; color: #555; font-style: italic; }
+    .das-metin { padding: 24px 32px; border-top: 1px solid #e0dbd2; }
+    .das-metin p { font-size: 16px; line-height: 1.85; color: #2a2a2a; margin-bottom: 14px; }
     .das-metin p:last-child { margin-bottom: 0; }
 
     @media (max-width: 640px) {
       .das-ust { flex-direction: column; }
       .das-foto-grid { width: 100%; }
       .paydas-logo { height: 56px; }
-    }
-
-    @media (max-width: 640px) {
       .site-header { padding: 14px 20px; flex-direction: column; align-items: flex-start; }
       .site-logo { width: 100px; height: 100px; }
       .site-name { font-size: 22px; }
@@ -265,7 +204,7 @@
 
 <header class="site-header">
   <a href="index.html" class="logo-group">
- 
+
   </a>
   <div class="header-right">
     <div class="lang-switcher">
@@ -276,8 +215,8 @@
       <a href="sezon.html" class="tab active" data-tr="2026 / 2027 Sezonu" data-en="2026 / 2027 Season">2026 / 2027 Sezonu</a>
       <a href="sanatcilar.html" class="tab" data-tr="Sanatçılar" data-en="Artists">Sanatçılar</a>
       <a href="medya.html" class="tab" data-tr="Medya" data-en="Media">Medya</a>
-	  <a href="hikayemiz.html" class="tab" data-tr="Hikayemiz" data-en="Our Story">Hikayemiz</a>
-	  <a href="index.html" class="tab" data-tr="Ana Sayfa" data-en="Main Page">Ana Sayfa</a>
+      <a href="hikayemiz.html" class="tab" data-tr="Hikayemiz" data-en="Our Story">Hikayemiz</a>
+      <a href="index.html" class="tab" data-tr="Ana Sayfa" data-en="Main Page">Ana Sayfa</a>
     </nav>
   </div>
 </header>
@@ -291,19 +230,15 @@
     <button class="proje-btn" onclick="gosterProje('paydas', this)" data-tr="Paydaş ve Destekçiler" data-en="Partners & Supporters">Paydaş ve Destekçiler</button>
   </div>
 
+  <!-- PAYDAŞ -->
   <div id="paydas" class="proje-panel">
     <div class="proje-label" data-tr="~ Paydaş ve Destekçiler ~" data-en="~ Partners & Supporters ~">~ Paydaş ve Destekçiler ~</div>
     <div class="proje-baslik" data-tr="Paydaş ve Destekçiler" data-en="Partners & Supporters">Paydaş ve Destekçiler</div>
-
     <div class="bolum">
       <div class="paydas-grid">
-
-        <!-- DAS Projesi — tıklanabilir -->
         <div class="paydas-kart tıklanabilir" onclick="dasModalAc()">
           <img src="paydas_logos/image4.jpg" alt="Tekerlekli Sandalye Dans Projesi" class="paydas-logo">
         </div>
-
-        <!-- Diğer logolar -->
         <div class="paydas-kart">
           <img src="paydas_logos/image1.jpg" alt="Paydaş" class="paydas-logo">
         </div>
@@ -313,7 +248,6 @@
         <div class="paydas-kart">
           <img src="paydas_logos/image3.png" alt="Paydaş" class="paydas-logo">
         </div>
-
       </div>
     </div>
   </div>
@@ -322,7 +256,6 @@
   <div class="das-overlay" id="das-modal" onclick="dasModalKapat(event)">
     <div class="das-modal">
       <button class="das-kapat" onclick="document.getElementById('das-modal').classList.remove('open'); document.body.style.overflow='';">×</button>
-
       <div class="das-ust">
         <div class="das-foto-grid">
           <img src="das_photos/image1.jpg" alt="WCDP">
@@ -336,111 +269,23 @@
           <div class="das-imza">Bibi Banu Dağcıoğlu Türkeli</div>
         </div>
       </div>
-
-<div class="das-metin">
-
-    <p>Bibi Banu Dağcıoğlu Türkeli</p>
-
-    <p>1974 İzmir doğumluyum. H.Ü Devlet Konservatuvarı Bale Anasanat Dalı lisans mezunuyum. 1995-2006 yılları arası sırasıyla Ankara Devlet Opera ve Balesi Modern Dans Topluluğu’ nda, 2006 senesinden beri de İzmir Devlet Opera ve Balesi’ nde solist Bale sanatçısı ve repetitör olarak görev yapmaktayım.</p>
-
-    <p>2016-2018 eğitim ve öğretim yılllarında Dokuz Eylül Üniversitesi Devlet Konservatuvarı’nda Bale Anasanat Dalı Klasik Bale ve modern dans öğretim görevlisiydim.</p>
-
-    <p>2017-2018 öğretim yılında TED İzmir Koleji Sanat Akademisi’nin Dans/Bale direktörlüğünü yapmakla birlikte elimden geldiğince hayatıma giren ,karşılaştığım tüm çocuklara dansla ulaşmaya çalışmaktayım..</p>
-
-    <p>. Dünyaca ünlü uluslararası konuk bale eğitmenleri YANNICK ve SINER BOQUIN’in katılımıyla “Klasik Bale Yaz Kampı” Classical Ballet Camp ‘de 4 sezondur modern dans eğitimi vermekteyim.</p>
-
-    <p>Wheelchair DANCE Project/TekerlekliSandalye DANS Projesi ise kendimi gerçekten işe yarar hissettiğim en önemli projemdir…</p>
-
-    <p>Ortopedik engelli dansçılardan oluşan Wheelchair Dance Project ( WCDP ) hikayesi şu şekilde başladı…</p>
-
-    <p>2013 yılında İzmir Büyükşehir Belediyesi’nin ilk EngelsİZMİR Kongresi açılışı için bedensel/ortopedik engelli bireyler ile bir kereye mahsus bir dans gösterisi rica edildi.</p>
-
-    <p>5 dansçıyla gerçekleştirdiğimiz ilk temsilimizden sonra projenin sürekliliğinin daha önemli olduğunu fark ederek, gönüllü olarak koreografilerini yapmaya ve dans eğitimi vermeyi sürdürmeye karar verdim.</p>
-
-    <p>Proje tamamen gönüllülük esaslı ve herhangi bir vakıf,dernek veya belediyeye bağlı olmadan çalışıyoruz.Çalışma alanı ve lojistik desteği 12 yıldır İzmir Büyük Şehir Belediyesi veriyor.</p>
-
-    <p>Projede yer alabilmenin tek şartı devamlılık ve disiplinli bir çalışma sistemine uyum sağlanması.Günümüze kadar yaklaşık 50 dansçı ile projemizde buluştuk ve 2025/2026 sezonunda 12 dansçı ile yolumuza devam ediyoruz.</p>
-
-    <p>Sağlık sorunları dışında herhangi bir sebeple devamsızlık yapmamaya özen gösteren harika dansçılarmız var.Danslarda koreografiler katılımcı sayısına göre düzenleniyor ve temsillerde kesin görev alabilecek dansçılarla çalışmayı daha doğru ve sağlıklı buluyorum. Çünkü son derece titizlikle çalışıyoruz ve temsillerimizi en yüksek kalitede seyretmeyi hakeden seyircilerimize çok önem veriyoruz... Özellikle de çocuk seyircilerimize...</p>
-
-    <p>Dansçılarımız projeyi bir okul gibi benimsediler ve 12 yıl sonu da sembolik bir mezuniyet gerçekleşti diyebilirim. Her biri sadece dansçı değil aynı zamanda repetitör,konduvit,koordinatör ve koreografi yapma konusunda müthiş yol katettiler. Çünkü bu proje bensiz de devam edebilmeli, her dansçı bir yönetmen gibi sahiplendiği sahnede ışık saçmayı sürdürmeli.</p>
-
-    <p>Yaşadığım mutluluk aslında yaptığım mesleği gerçekten çok sevmemle alakalı. İşimi çok seviyorum, engelli yada engelsiz, çocuk yada yetişkin bireylere dansı öğretmek ,benzersiz yaş ve bedenlerle çalışmak benim için birbirlerinden farklı bir anlam taşımıyor. İnsanla çalışıyorum...</p>
-
-    <p>Bedenle çalışırken zeka ve azmin, istek ve kararlılığın şahane sonuçlarını alkışları duyunca daha fazla hissediyoruz.</p>
-
-    <p>Hepimiz aynıyız, sadece farklı bedenlere sahibiz...</p>
-
-    <p>Sahnede dans eden mutsuz bir insan hiç gördünüz mü? Ben görmedim...</p>
-
-    <p>Tüm dansçılarımla inanılmaz gurur duyuyorum, bu cesaretlerini, çalışkanlıklarını ve inançlarını her temsilden herbirini kucaklayarak ve önlerinde saygıyla eğilerek tüm ekibi kutluyorum...</p>
-	    <p>Danslarda genelde klasik batı müziği kullanıyorum. Hayatım klasik müzik odaklı mesleğim ve yetişme tarzım gereği... Klasik bale kol formları ve modern/çağdaş dans disiplinlerini kullanıyorum. Bunun yanısıra doğaçlama/improvizasyon atölye çalışmalarıyla bedenlerini daha iyi tanımalarını ve sınırsız hareket kabiliyetleri olduğunu ortaya çıkaran çalışmalar yapıyoruz.</p>
-
-    <p>Devlet balesine konuk gelen her değerli koreograf ile de atölye çalışması gerçekleştiriyoruz. Kulak eğitimi için Ritm çalışmalarına da yer veriyoruz. Çünkü önce müziği doğru duymak gerekiyor. Önce kulak duymalı...Müziğin ritmini değil,ritm aralarındaki sessizliği de duymalı iyi bir dansçı.Beden ve ruh ancak o zaman hissediyor ve hissettiriyor diye düşünüyorum.</p>
-
-    <p>Dansçılarımızın yaş aralığı 9-50 arasında değişiyor. Her birinin engel yüzdesi ve çeşidi farklıdır. Kas rahatsızlığı, omurilik felci, protezli ve protezsiz birbirinden farklı ve rengarenk dansçılarımız var.</p>
-
-    <p>2013 Kasım-2025 Eylül sezonları süresince yüzlerce temsil gerçekleştirdik. Bu etkinliklerin çoğu eğitimi kurumlarında öğrenim gören kıymetli öğrenciler ve eğitimciler için gerçekleştirildi. Sahne erişimi engelliye uygun olmayan pekçok etkinliği de geri çevirmek zorunda kalmakla birlikte, koşulları sağlamak için pek çok okul, rampa veya engelli asansörlerini kurumlarına temin ettiler ve erişim ihtiyacının önemi konusunda işbirliği yaparak tüm çocuklara da örnek oldular.</p>
-
-    <p>Bugüne kadar yaklaşık 100.000 seyirci ile buluştuk...Temsillerimizin hepsi ücretsiz olarak gerçekleştirildi. Arzumuz daha çok eğitim kurumuna ulaşmak ve dansla farkındalık yaratırken dünyamızı daha da güzelleştirmek.</p>
-
-    <p>2018 yılında Sabancı Vakfı’nın toplumsal sorunlara çözüm üreten “sıra dışı kişilerin olağanüstü öyküleri”ni anlattığı Fark Yaratanlar programına seçilmek görünürlük açısından güzel bir destekti. Açıkçası kendimin bir fark yaratan olduğumu düşünmemiştim.</p>
-
-    <p>Programda gerçekten olağanüstü insanların hikayelerine yer veriyorlar...Benim için gayet normal bir durum herhangi birine dans etmeyi öğretmek. Gönüllü olarak hizmet vermenin, karşılıksız yapılan her işin manevi karşılığı paha biçilmezdir.</p>
-
-    <p>Dans etmek, öğretmek, seyretmek, yaratmak, değişmek, değiştirmek...Esas muhteşemlik burada işte...</p>
-
-    <p>Dansçılara bazen şunu derim “ keşke benim gözümden kendinizi seyredebilseniz..” mesleğim ve hayatım zaten tamamen dans odaklı, Wheelchair Dance Project dansçıları ve beni projede her zaman destekleyen ekip arkadaşlarımı inanılmaz buluyorum. Evet çok farklı olduğumuz kesin...</p>
-
-    <p>Okullarda gerçekleştirdiğimiz Çocuklara DANSLA FARKINDALIK temsillerimiz büyük etki yaratıyor. İşte esas O çocuklar sayesinde gelecekte çok daha başarılı dansçıların cesaret bulacağına,farklılıkları sevgiyle kucaklayacaklarına yürekten inanıyorum.</p>
-
-    <p>Umarım diğer şehirlerde de benzer Dans etkinlikleri çoğalır... Bu konuda yardım isteyen herkesle tüm bilgi ve deneyimlerimi paylaşmaya hazırım.</p>
-
-    <p>Wcdp’ ye katılan farklı bedenlere sahip dansçıların aileleri ile davranış biçimleri konusunda da bilgi paylaşımı yapıyoruz.Engeli olan çocuklara davranış biçimleri, doğru sağlık koşullarının sağlanması, doğru protez/ortez veya sandalye seçimleri ve rehabilite konularında engelli bireylerden daha çok, ailelerinin yardıma ihtiyacı var ülkemizde. Bu konuda gelişmeye çok ihtiyacımız olduğunu ben de projeye başladığımda öğrendim aslında...</p>
-
-    <p>Sahneye çıktığımızda bizi gerçekten “iyi” dans ettiğimiz için alkışlıyor seyircimiz ve sandalyelerimiz sadece aksesuar rolündeler...</p>
-
-    <p>Temsillerimizde aynı zamanda daha önce öğretmenleri olduğum Konservatuvar öğrencilerimin ve ders verdiğim gençlerin de desteği tartışılmaz.</p>
-
-    <p>Projede zaman zaman çok değerli müzisyen dostlarım da enstrüman veya sesleriyle bizimle sahne alıyorlar.</p>
-
-    <p>Farkındalığı çok yüksek bir nesil geliyor, umutluyum...</p>
-	    <p>Wheelchair DANCE Project ajitasyondan çok uzaktır. Bu tarz sömürüyü hissettiğimiz aile bireyleri ve dansçı adaylarına ekip olarak yardımcı olmaya çalışıyoruz ancak duygu sömürüsü barındıran hiç bir etkinlikte yer almıyoruz.</p>
-
-    <p>Özellikle son dakika arandığımız Engelli Haftası veya Dünya Engelliler Günü etkinliklerinden de fazla hoşlanmıyoruz ekip olarak. Ötekileştirmeden uzak, samimi etkinlikleri tercih ediyoruz.</p>
-
-    <p>Yani engelliler sadece engelliler hafta veya günlerinde akla gelmemeli.Hele ki sanat yapıyorlarsa hergün dans sahnesinde yer alabilmeliler,hayatın içinde hissedebilmek için… WCDP’ nin en büyük amacı “Çocuklara Dansla Farkındalık” yaratmak. Davet edildiğimiz engel koşulları uygun olan okullarda gösteriler yapıyoruz ve en büyük desteği ve doğal tepkiyi bu güzel çocuklardan alıyoruz...</p>
-
-    <p>Bizimle en çok ÇOCUKLAR dans ediyor, hedefimiz sadece onların kalp ve ruhlarına dokunmak aslında, inanıyorum ki bu dünyayı sadece çocuklar değiştirecek. Esas fark o zaman yaratılacak...</p>
-
-    <p>Neye ihtiyacımız olduğu konusunda çok soru alıyoruz. Bunun çok net bir cevabı var, çocuklara…Çünkü engelliye yaklaşım,davranış,farkındalık ve eğitim/erişebilirlik konularında biz yetişkinlerin çok da yeterli bir anlayış ve bilgiye sahip yetiştirildiğimizi düşünmüyorum.</p>
-
-    <p>Hala rampasız kaldırımlar,erişimi olmayan sosyal tesisler,kurum binaları,sanat merkezleri hatta çocuk parkları olduğunun farkında bile değiliz. Pusetli ebeveynler bunu 2-3 yıl tecrübe ettikten sonra bir anı olarak kalıyor.Nerelere erişemediklerini hatırlayıp bu konuda sadece o ebeveynler bile adım atsaydı belki birşeyler değişmeye başlayabilirdi diye aklımdan geçiririm.</p>
-
-    <p>Ya da rampası olmayan,tuvaletine erişim şartları imkansız cafe ve restaurantları düşünelim. HAYIR… biz başımıza gelmeden neye ihtiyacımız olduğunu anlamayan varlıklarız sanırım.</p>
-
-    <p>İşte esas olan kendimizin değil, başkasının neye ihtiyacı olduğunu görmek ve çözüm bulmak olmalı,bizim ihtiyacımız hiç olmasa da… Çocuklara erken yaşta öğretilmesi gereken bu empati yeteneğine sahip olmaları için tek gereken gerçek ve somut örneklerle anlatmaktır.</p>
-
-    <p>Biz bunu TEKERLEKLİ SANDALYE DANS PROJESİ’nin dansçıları ile var gücümüzle anlatmaya devam edeceğiz….</p>
-
-    <p>Ve gelecekte Fark yaratanlar sadece çocuklar olacak...</p>
-
-    <p>12 Yıldır aralıksız çalışıyoruz.Büyük özveri ve aşkla.PANDEMİ sırası da da online Zoom bağlantısı ile provalarımıza devam ettik. Yani biz ekip olarak hep ayaktaydık.</p>
-
-    <p>Sistemli ve disiplinli çalışmalar sonucunda PARADANS SPORU dalında ülkemizi temsil eden ve bayrağımızı dalgalandıran değerli dansçılarımız önemli dereceler ve Avrupa şampiyonlukları aldılar. Ancak en büyük madalya ,her zaman, çocukların minik ellerinden çıkan alkış sesleri…</p>
-
-    <p>Sizler de hayatınızda bir fark yaratmak istiyorsanız, bir ENGELiniz de yoksa bir provamıza bekliyoruz...</p>
-
-    <p>Tekerlekli Sandalye DANS Projesi SADECE DANS ETTİRİR...</p>
-
-    <p>Çok teşekkürler...</p>
-
-    <p>Bibi Banu Dağcıoğlu Türkeli</p>
-
-</div>
-
-	
-	</div>
+      <div class="das-metin">
+        <p>Bibi Banu Dağcıoğlu Türkeli</p>
+        <p>1974 İzmir doğumluyum. H.Ü Devlet Konservatuvarı Bale Anasanat Dalı lisans mezunuyum. 1995-2006 yılları arası sırasıyla Ankara Devlet Opera ve Balesi Modern Dans Topluluğu'nda, 2006 senesinden beri de İzmir Devlet Opera ve Balesi'nde solist Bale sanatçısı ve repetitör olarak görev yapmaktayım.</p>
+        <p>2016-2018 eğitim ve öğretim yıllarında Dokuz Eylül Üniversitesi Devlet Konservatuvarı'nda Bale Anasanat Dalı Klasik Bale ve modern dans öğretim görevlisiydim.</p>
+        <p>2017-2018 öğretim yılında TED İzmir Koleji Sanat Akademisi'nin Dans/Bale direktörlüğünü yapmakla birlikte elimden geldiğince hayatıma giren, karşılaştığım tüm çocuklara dansla ulaşmaya çalışmaktayım.</p>
+        <p>Dünyaca ünlü uluslararası konuk bale eğitmenleri YANNICK ve SINER BOQUIN'in katılımıyla "Klasik Bale Yaz Kampı" Classical Ballet Camp'de 4 sezondur modern dans eğitimi vermekteyim.</p>
+        <p>Wheelchair DANCE Project/Tekerlekli Sandalye DANS Projesi ise kendimi gerçekten işe yarar hissettiğim en önemli projemdir…</p>
+        <p>Ortopedik engelli dansçılardan oluşan Wheelchair Dance Project (WCDP) hikayesi şu şekilde başladı… 2013 yılında İzmir Büyükşehir Belediyesi'nin ilk EngelsİZMİR Kongresi açılışı için bedensel/ortopedik engelli bireyler ile bir kereye mahsus bir dans gösterisi rica edildi.</p>
+        <p>5 dansçıyla gerçekleştirdiğimiz ilk temsilimizden sonra projenin sürekliliğinin daha önemli olduğunu fark ederek, gönüllü olarak koreografilerini yapmaya ve dans eğitimi vermeyi sürdürmeye karar verdim.</p>
+        <p>Proje tamamen gönüllülük esaslı ve herhangi bir vakıf, dernek veya belediyeye bağlı olmadan çalışıyoruz. Çalışma alanı ve lojistik desteği 12 yıldır İzmir Büyük Şehir Belediyesi veriyor.</p>
+        <p>Projede yer alabilmenin tek şartı devamlılık ve disiplinli bir çalışma sistemine uyum sağlanması. Günümüze kadar yaklaşık 50 dansçı ile projemizde buluştuk ve 2025/2026 sezonunda 12 dansçı ile yolumuza devam ediyoruz.</p>
+        <p>Bugüne kadar yaklaşık 100.000 seyirci ile buluştuk… Temsillerimizin hepsi ücretsiz olarak gerçekleştirildi. Arzumuz daha çok eğitim kurumuna ulaşmak ve dansla farkındalık yaratırken dünyamızı daha da güzelleştirmek.</p>
+        <p>Sahneye çıktığımızda bizi gerçekten "iyi" dans ettiğimiz için alkışlıyor seyircimiz ve sandalyelerimiz sadece aksesuar rolündeler…</p>
+        <p>Tekerlekli Sandalye DANS Projesi SADECE DANS ETTİRİR…</p>
+        <p>Çok teşekkürler… Bibi Banu Dağcıoğlu Türkeli</p>
+      </div>
+    </div>
   </div>
 
   <!-- PROJE I -->
@@ -484,52 +329,124 @@
     </div>
   </div>
 
-  <!-- PROJE II -->
+  <!-- PROJE II — GÜNCELLENDİ -->
   <div id="proje2" class="proje-panel">
     <div class="proje-label" data-tr="~ Proje II ~" data-en="~ Project II ~">~ Proje II ~</div>
-    <div class="proje-baslik" data-tr='"Miras" — Çok Sesliliğin İzinde' data-en='"Legacy" — In the Footsteps of Polyphony'>"Miras" — Çok Sesliliğin İzinde</div>
+    <div class="proje-baslik"
+         data-tr='"Miras" — Çoksesliliğin İzinde'
+         data-en='"Legacy" — In the Footsteps of Polyphony'>
+      "Miras" — Çoksesliliğin İzinde
+    </div>
 
     <div class="bolum">
       <div class="bolum-baslik" data-tr="Program" data-en="Programme">Program</div>
       <ul class="program-listesi">
-        <li data-tr="Paul Hindemith – <em>Yaylı Çalgılar Orkestrası Beş Parça, Op. 44</em>" data-en="Paul Hindemith – <em>Five Pieces for String Orchestra, Op. 44</em>">Paul Hindemith – <em>Yaylı Çalgılar Orkestrası Beş Parça, Op. 44</em></li>
-        <li>Ahmet Adnan Saygun – <em>Deyiş</em></li>
-        <li data-tr="Ege Gür – <em>Sessizliğin Soğuk Sularında</em>" data-en="Ege Gür – <em>In the Cold Waters of Silence</em>">Ege Gür – <em>Sessizliğin Soğuk Sularında</em></li>
-        <li data-tr="Ulvi Cemal Erkin – <em>Sinfonietta</em>" data-en="Ulvi Cemal Erkin – <em>Sinfonietta</em>">Ulvi Cemal Erkin – <em>Sinfonietta</em></li>
+        <li data-tr="Paul Hindemith – <em>Yaylı Çalgılar Orkestrası için Beş Parça, Op. 44</em>"
+            data-en="Paul Hindemith – <em>Five Pieces for String Orchestra, Op. 44</em>">
+          Paul Hindemith – <em>Yaylı Çalgılar Orkestrası için Beş Parça, Op. 44</em>
+        </li>
+        <li data-tr='Ahmed Adnan Saygun – Yaylı orkestra için <em>"Deyiş"</em>'
+            data-en='Ahmed Adnan Saygun – <em>"Deyiş"</em> for string orchestra'>
+          Ahmed Adnan Saygun – Yaylı orkestra için <em>"Deyiş"</em>
+        </li>
+        <li class="ara" data-tr="— Ara —" data-en="— Interval —">— Ara —</li>
+        <li data-tr="Ege Gür – <em>Sessizliğin Soğuk Sularında</em>"
+            data-en="Ege Gür – <em>In the Cold Waters of Silence</em>">
+          Ege Gür – <em>Sessizliğin Soğuk Sularında</em>
+        </li>
+        <li data-tr="Ulvi Cemal Erkin – <em>Sinfonietta</em>"
+            data-en="Ulvi Cemal Erkin – <em>Sinfonietta</em>">
+          Ulvi Cemal Erkin – <em>Sinfonietta</em>
+        </li>
       </ul>
     </div>
 
     <div class="bolum">
       <div class="bolum-baslik" data-tr="Şef" data-en="Conductor">Şef</div>
       <div class="muzisyen-item">Kerem Tunçer</div>
-      <div class="muzisyen-rol" data-tr="Numen Oda Orkestrası" data-en="Numen Chamber Orchestra">Numen Oda Orkestrası</div>
+    </div>
+
+    <div class="bolum">
+      <div class="bolum-baslik" data-tr="Müzisyenler" data-en="Musicians">Müzisyenler</div>
+
+      <div class="muzisyen-rol" data-tr="Kemanlar" data-en="Violins">Kemanlar</div>
       <div class="muzisyen-item">
-        İdil Yunkuş &nbsp;·&nbsp; Ilgın Top &nbsp;·&nbsp; Sofiko Tchumburidze &nbsp;·&nbsp; Yağmur Tuna<br>
-        Rüzgar Turgay &nbsp;·&nbsp; Işı Tuncer &nbsp;·&nbsp; Doğa Altınok &nbsp;·&nbsp; Ada Enön &nbsp;·&nbsp; İdil Olgar<br>
-        Emir Kemancı &nbsp;·&nbsp; Arcan İşenkul &nbsp;·&nbsp; Arda Aykut<br>
-        Beste Yıldız &nbsp;·&nbsp; Ülker Tümer &nbsp;·&nbsp; Berkay Azıtepe<br>
-        Atakan Altun &nbsp;·&nbsp; Büşra Başoğlu
+        İdil Yunkuş &nbsp;·&nbsp; Ilgın Top<br>
+        Sofiko Tchumburidze &nbsp;·&nbsp; Yağmur Tuna<br>
+        Rüzgar Turgay &nbsp;·&nbsp; İlke Işı Tuncer<br>
+        Doğa Altınok &nbsp;·&nbsp; Ada Enön &nbsp;·&nbsp; İdil Olgar
       </div>
+
+      <div class="muzisyen-rol" data-tr="Viyolalar" data-en="Violas">Viyolalar</div>
+      <div class="muzisyen-item">Emir Kemancı &nbsp;·&nbsp; Arcan İşenkul &nbsp;·&nbsp; Arda Aykut</div>
+
+      <div class="muzisyen-rol" data-tr="Viyolonseller" data-en="Cellos">Viyolonseller</div>
+      <div class="muzisyen-item">Beste Yıldız &nbsp;·&nbsp; Ülker Tümer &nbsp;·&nbsp; Berkay Azıtepe</div>
+
+      <div class="muzisyen-rol" data-tr="Kontrabaslar" data-en="Double Basses">Kontrabaslar</div>
+      <div class="muzisyen-item">Atakan Altun &nbsp;·&nbsp; Büşra Başoğlu</div>
     </div>
 
     <hr class="ayirici">
 
     <div class="bolum">
-      <div class="bolum-baslik" data-tr="Numen Oda Orkestrası Hakkında" data-en="About the Numen Chamber Orchestra">Numen Oda Orkestrası Hakkında</div>
-      <p class="aciklama-metin" data-tr="Kolektif çatısı altında ilk defa bir araya gelecek olan bu on sekiz müzisyenin her biri; Hollanda'dan Rusya'ya, İngiltere'den Almanya'ya uzanan yolculuklarında ülkemizi farklı sanatsal mecralarda temsil etmeye devam etmektedir. Bu proje, topluluğun bünyesinde gerçekleşecek en önemli girişimlerinden biri olarak değerlendirilmekte; her sezon en az bir kez çeşitli program ve projelerde bir araya getirilmesi planlanmaktadır." data-en="Each of these eighteen musicians, coming together for the first time under the Collective, continues to represent Turkey in a range of artistic arenas — from the Netherlands to Russia, from England to Germany. This project is regarded as one of the most significant endeavours within the ensemble, with plans to reunite at least once per season in various programmes and projects.">Kolektif çatısı altında ilk defa bir araya gelecek olan bu on sekiz müzisyenin her biri; Hollanda'dan Rusya'ya, İngiltere'den Almanya'ya uzanan yolculuklarında ülkemizi farklı sanatsal mecralarda temsil etmeye devam etmektedir. Bu proje, topluluğun bünyesinde gerçekleşecek en önemli girişimlerinden biri olarak değerlendirilmekte; her sezon en az bir kez çeşitli program ve projelerde bir araya getirilmesi planlanmaktadır.</p>
-    </div>
-
-    <div class="bolum">
-      <div class="bolum-baslik" data-tr="Program Açıklaması" data-en="Programme Notes">Program Açıklaması</div>
-      <p class="aciklama-metin" data-tr="20. yüzyıl müziğinin en üretken teorisyenlerinden Paul Hindemith, ülkemiz için bir besteciden çok daha fazlasını ifade eder. 1930'lu yıllarda Türkiye'ye gelen ve Ankara Devlet Konservatuvarı'nın kuruluş raporlarını bizzat hazırlayan Hindemith, bu kurumsal evrimin baş mimarlarındandır. <em>Beş Parça</em>, yaylı çalgıların neoklasik sınırlarını keşfederken projemizin ilham noktasına ışık tutmaktadır." data-en="Paul Hindemith, one of the most prolific theorists of 20th-century music, holds a significance for Turkey that extends well beyond his role as a composer. Having visited Turkey in the 1930s and personally authored the founding reports of the Ankara State Conservatory, he stands as a chief architect of that institutional evolution. His <em>Five Pieces</em> illuminates the inspiration behind our project, while exploring the neoclassical boundaries of string writing.">20. yüzyıl müziğinin en üretken teorisyenlerinden Paul Hindemith, ülkemiz için bir besteciden çok daha fazlasını ifade eder. 1930'lu yıllarda Türkiye'ye gelen ve Ankara Devlet Konservatuvarı'nın kuruluş raporlarını bizzat hazırlayan Hindemith, bu kurumsal evrimin baş mimarlarındandır. <em>Beş Parça</em>, yaylı çalgıların neoklasik sınırlarını keşfederken projemizin ilham noktasına ışık tutmaktadır.</p>
-      <p class="aciklama-metin" data-tr="Ahmet Adnan Saygun'un <em>Deyiş</em>'i, Anadolu'nun derin mistik ruhunu ve ritmik zenginliğini modern bir dil aracılığıyla orkestraya taşır. Aranın ardından Ege Gür'ün <em>Sessizliğin Soğuk Sularında</em> adlı yapıtı, günümüz müzik dilini yansıtarak geçmişten devralınan mirasın geleceğe uzanan köprüsünü kurar. Konserin kapanışında ise Ulvi Cemal Erkin'in geleneksel Türk müziği makamlarını Batı formlarıyla buluşturduğu <em>Sinfonietta</em> yer almaktadır." data-en="Ahmet Adnan Saygun's <em>Deyiş</em> channels the deep mystical spirit and rhythmic vitality of Anatolia through a modern orchestral voice. Following the interval, Ege Gür's <em>In the Cold Waters of Silence</em> reflects today's musical language, building a bridge from the inherited past to the future. The concert closes with Ulvi Cemal Erkin's <em>Sinfonietta</em>, a work that brings together the makam traditions of Turkish music and Western forms.">Ahmet Adnan Saygun'un <em>Deyiş</em>'i, Anadolu'nun derin mistik ruhunu ve ritmik zenginliğini modern bir dil aracılığıyla orkestraya taşır. Aranın ardından Ege Gür'ün <em>Sessizliğin Soğuk Sularında</em> adlı yapıtı, günümüz müzik dilini yansıtarak geçmişten devralınan mirasın geleceğe uzanan köprüsünü kurar. Konserin kapanışında ise Ulvi Cemal Erkin'in geleneksel Türk müziği makamlarını Batı formlarıyla buluşturduğu <em>Sinfonietta</em> yer almaktadır.</p>
+      <div class="bolum-baslik" data-tr="Formasyon" data-en="Formation">Formasyon</div>
+      <p class="aciklama-metin"
+         data-tr="Numen Kolektif çatısı altında ilk defa bir araya gelecek olan bu 18 müzisyenin her biri; Hollanda'dan Rusya'ya, İngiltere'den Almanya'ya uzanan yolculuklarında ülkemizi aktif olarak farklı sanatsal mecralarda temsil etmektedir."
+         data-en="Each of these 18 musicians, coming together for the first time under Numen Kolektif, continues to actively represent Turkey across diverse artistic arenas — from the Netherlands to Russia, from England to Germany.">
+        Numen Kolektif çatısı altında ilk defa bir araya gelecek olan bu 18 müzisyenin her biri; Hollanda'dan Rusya'ya, İngiltere'den Almanya'ya uzanan yolculuklarında ülkemizi aktif olarak farklı sanatsal mecralarda temsil etmektedir.
+      </p>
+      <p class="aciklama-metin"
+         data-tr="Bu proje geleceğe yönelik bir tohum niteliği taşıdığından dolayı topluluk bünyesinde gerçekleşecek en önemli projelerden biridir. Bu heyecan verici başlangıcın ardından, her biri özenle seçilmiş ve en baştan topluluğa gönülden bağlanmış olağanüstü nitelikte müzisyenlerle her sezon en az bir defa olmak üzere çeşitli konser programları ve projeler gerçekleştirilmesi planlanmaktadır."
+         data-en="As a project that carries the nature of a seed sown for the future, it stands among the most significant endeavours within the ensemble. Following this exciting beginning, it is planned to realise various concert programmes and projects at least once per season with outstanding musicians, each carefully chosen and wholeheartedly committed to the collective from the very start.">
+        Bu proje geleceğe yönelik bir tohum niteliği taşıdığından dolayı topluluk bünyesinde gerçekleşecek en önemli projelerden biridir. Bu heyecan verici başlangıcın ardından, her biri özenle seçilmiş ve en baştan topluluğa gönülden bağlanmış olağanüstü nitelikte müzisyenlerle her sezon en az bir defa olmak üzere çeşitli konser programları ve projeler gerçekleştirilmesi planlanmaktadır.
+      </p>
     </div>
 
     <div class="bolum">
       <div class="bolum-baslik" data-tr="Sanatsal Amaç" data-en="Artistic Vision">Sanatsal Amaç</div>
-      <p class="aciklama-metin" data-tr="Numen Kolektif'in 2026/2027 sezonu kapsamındaki bu proje, Cumhuriyetin kuruluş yıllarından itibaren ülkemizdeki klasik müziğin gelişiminde rol oynamış bestecilerin eserlerini bir anlam bütünlüğü içerisinde sunma vizyonu taşır. Ankara Devlet Konservatuvarı'nın 90. yılında gerçekleşecek bu konser, dünü, bugünü ve yarını tek bir çizgide buluşturmayı hedeflemektedir." data-en="This project, part of Numen Kolektif's 2026/2027 season, carries the vision of presenting, in a unified narrative, the works of composers who have shaped the development of classical music in Turkey since the founding years of the Republic. Taking place in the 90th anniversary year of the Ankara State Conservatory, this concert aims to bring yesterday, today and tomorrow into a single, unbroken line.">Numen Kolektif'in 2026/2027 sezonu kapsamındaki bu proje, Cumhuriyetin kuruluş yıllarından itibaren ülkemizdeki klasik müziğin gelişiminde rol oynamış bestecilerin eserlerini bir anlam bütünlüğü içerisinde sunma vizyonu taşır. Ankara Devlet Konservatuvarı'nın 90. yılında gerçekleşecek bu konser, dünü, bugünü ve yarını tek bir çizgide buluşturmayı hedeflemektedir.</p>
+      <p class="aciklama-metin"
+         data-tr='Numen Kolektif'in 2026–2027 sezonu kapsamında gerçekleştireceği <em>"Miras" – Çoksesliliğin İzinde</em> başlıklı ikinci projesi, özünde Cumhuriyetin kuruluş yıllarından itibaren çağdaş Türk müziğinin gelişiminde rol oynamış bestecilerin eserlerini bir anlam bütünlüğü içerisinde seyirciyle buluşturmaktır.'
+         data-en='The second project of Numen Kolektif's 2026–2027 season, titled <em>"Legacy" — In the Footsteps of Polyphony</em>, is at its core an endeavour to bring together, in a unified artistic narrative, the works of composers who have shaped the development of contemporary Turkish music since the founding years of the Republic.'>
+        Numen Kolektif'in 2026–2027 sezonu kapsamında gerçekleştireceği <em>"Miras" – Çoksesliliğin İzinde</em> başlıklı ikinci projesi, özünde Cumhuriyetin kuruluş yıllarından itibaren çağdaş Türk müziğinin gelişiminde rol oynamış bestecilerin eserlerini bir anlam bütünlüğü içerisinde seyirciyle buluşturmaktır.
+      </p>
+      <p class="aciklama-metin"
+         data-tr="Bu programı oluştururken, bahsedilen sanatsal evrim sürecine belki de en yakından tanıklık etmiş olan Ankara Devlet Konservatuvarı'nın taşıdığı önemi izlek edindik."
+         data-en="In shaping this programme, we took as our guiding thread the significance of the Ankara State Conservatory — perhaps the institution that has witnessed this artistic evolution most closely.">
+        Bu programı oluştururken, bahsedilen sanatsal evrim sürecine belki de en yakından tanıklık etmiş olan Ankara Devlet Konservatuvarı'nın taşıdığı önemi izlek edindik.
+      </p>
+      <p class="aciklama-metin"
+         data-tr="Kültürel miraslarımızı yüceltme misyonu esas olan bir kolektif olarak, Ankara Devlet Konservatuvarı'nın kuruluşunun 90. yılı kapsamında köklerimizi anımsarken, bugünün ışığında geleceğe köprü kuran bir program ile dünü, bugünü ve yarını tek bir çizgide buluşturmak istedik."
+         data-en="As a collective whose mission is to elevate our cultural heritage, we wished — within the 90th anniversary of the founding of the Ankara State Conservatory — to remember our roots while building a bridge to the future, bringing yesterday, today and tomorrow into a single, unbroken line.">
+        Kültürel miraslarımızı yüceltme misyonu esas olan bir kolektif olarak, Ankara Devlet Konservatuvarı'nın kuruluşunun 90. yılı kapsamında köklerimizi anımsarken, bugünün ışığında geleceğe köprü kuran bir program ile dünü, bugünü ve yarını tek bir çizgide buluşturmak istedik.
+      </p>
+    </div>
+
+    <div class="bolum">
+      <div class="bolum-baslik" data-tr="Repertuvar Açıklaması" data-en="Programme Notes">Repertuvar Açıklaması</div>
+      <p class="aciklama-metin"
+         data-tr="20. yüzyıl müziğinin en üretken ve çok yönlü teorisyenlerinden Alman besteci Paul Hindemith, ülkemiz için uzaktan takdir edeceğimiz bir besteciden çok daha fazlasıdır. 1930'lu yıllarda davet üzerine Türkiye'ye gelen ve Ankara Devlet Konservatuvarı'nın kuruluş raporlarını bizzat hazırlayan Hindemith, bu kurumsal evrimin baş mimarlarındandır. Bestecinin eğitim odaklı ve pedagojik yaklaşımının önemli örneklerinden olan yaylı orkestra için <em>Beş Parça</em>, yaylı çalgıların dinamik ve neoklasik sınırlarını keşfederken projemizin ilham noktasına ve müzik tarihimizin köklerine ışık tutmaktadır."
+         data-en="German composer Paul Hindemith — one of the most prolific and versatile theorists of 20th-century music — means far more to our country than a composer we admire from afar. Having come to Turkey at the invitation of the state in the 1930s and personally authoring the founding reports of the Ankara State Conservatory, Hindemith stands as a chief architect of that institutional evolution. His <em>Five Pieces</em> for string orchestra, a notable example of his pedagogically oriented approach, illuminates the inspiration behind our project and the roots of our musical history, while exploring the dynamic and neoclassical boundaries of string writing.">
+        20. yüzyıl müziğinin en üretken ve çok yönlü teorisyenlerinden Alman besteci Paul Hindemith, ülkemiz için uzaktan takdir edeceğimiz bir besteciden çok daha fazlasıdır. 1930'lu yıllarda davet üzerine Türkiye'ye gelen ve Ankara Devlet Konservatuvarı'nın kuruluş raporlarını bizzat hazırlayan Hindemith, bu kurumsal evrimin baş mimarlarındandır. Bestecinin eğitim odaklı ve pedagojik yaklaşımının önemli örneklerinden olan yaylı orkestra için <em>Beş Parça</em>, yaylı çalgıların dinamik ve neoklasik sınırlarını keşfederken projemizin ilham noktasına ve müzik tarihimizin köklerine ışık tutmaktadır.
+      </p>
+      <p class="aciklama-metin"
+         data-tr='Programın devamında ise Çağdaş Türk Müziği'nin öncülerinden Ahmed Adnan Saygun'un yaylı orkestra için <em>"Deyiş"</em> adlı eseri, Anadolu'nun derin mistik ruhunu yenilikçi bir dille dinleyicilerine taşır. Saygun'un müziği, kültürel mirasın günün ışığında yeniden yorumlanmış en güçlü örneklerindendir.'
+         data-en='The programme continues with Ahmed Adnan Saygun's <em>"Deyiş"</em> for string orchestra. A pioneer of contemporary Turkish music, Saygun conveys the deep mystical spirit of Anatolia to the listener through an innovative musical language. His music stands as one of the most powerful examples of cultural heritage reinterpreted in the light of the present day.'>
+        Programın devamında ise Çağdaş Türk Müziği'nin öncülerinden Ahmed Adnan Saygun'un yaylı orkestra için <em>"Deyiş"</em> adlı eseri, Anadolu'nun derin mistik ruhunu yenilikçi bir dille dinleyicilerine taşır. Saygun'un müziği, kültürel mirasın günün ışığında yeniden yorumlanmış en güçlü örneklerindendir.
+      </p>
+      <p class="aciklama-metin"
+         data-tr="Aranın ardından genç kuşağın dikkat çeken bestecilerinden Ege Gür'ün yaylı orkestra için <em>Sessizliğin Soğuk Sularında</em> adlı yapıtı, konservatuvarın açtığı çağdaş yolda yürüyen yeni neslin sanatsal arayışını ve günümüz müzik dilini yansıtır. Bu eser, geçmişten devralınan mirasın geleceğe uzanan canlı köprüsüdür."
+         data-en="Following the interval, <em>In the Cold Waters of Silence</em> for string orchestra by Ege Gür — one of the most compelling composers of the younger generation — reflects the artistic search and contemporary musical language of a new generation treading the modern path that the conservatory opened. This work is the living bridge stretching from an inherited past towards the future.">
+        Aranın ardından genç kuşağın dikkat çeken bestecilerinden Ege Gür'ün yaylı orkestra için <em>Sessizliğin Soğuk Sularında</em> adlı yapıtı, konservatuvarın açtığı çağdaş yolda yürüyen yeni neslin sanatsal arayışını ve günümüz müzik dilini yansıtır. Bu eser, geçmişten devralınan mirasın geleceğe uzanan canlı köprüsüdür.
+      </p>
+      <p class="aciklama-metin"
+         data-tr="Konserin görkemli kapanışını yapacak olan yaylı orkestra için <em>Sinfonietta</em>, tıpkı Saygun gibi dönemin kurucu kuşağının temsilcilerinden olan Ulvi Cemal Erkin'in geleneksel Türk müziği makamlarını ve ritimlerini Batı'nın müzik formlarıyla buluşturduğu bir başyapıttır."
+         data-en="Bringing the concert to its magnificent close, the <em>Sinfonietta</em> for string orchestra is a masterwork by Ulvi Cemal Erkin — like Saygun, a representative of the founding generation — in which the makam traditions and rhythms of Turkish music meet the forms of Western music.">
+        Konserin görkemli kapanışını yapacak olan yaylı orkestra için <em>Sinfonietta</em>, tıpkı Saygun gibi dönemin kurucu kuşağının temsilcilerinden olan Ulvi Cemal Erkin'in geleneksel Türk müziği makamlarını ve ritimlerini Batı'nın müzik formlarıyla buluşturduğu bir başyapıttır.
+      </p>
     </div>
   </div>
+
 </main>
 
 <footer class="site-footer">
@@ -568,7 +485,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
   function dasModalAc() {
     document.getElementById('das-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
