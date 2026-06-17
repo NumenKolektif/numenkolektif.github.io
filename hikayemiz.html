@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026 / 2027 Sezonu — Numen Kolektif</title>
+  <title>Hikayemiz — Numen Kolektif</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -28,7 +28,6 @@
       flex-shrink: 0; text-decoration: none;
     }
 
- 
     .site-name {
       color: white; font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 28px; font-weight: 600; letter-spacing: 0.06em;
@@ -81,42 +80,9 @@
       border-left: 3px solid #C0392B; padding-left: 12px; margin-bottom: 32px;
     }
 
-    .proje-tabs { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
-
-    .proje-btn {
-      padding: 12px 28px; font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 16px; font-weight: 600; letter-spacing: 0.06em;
-      cursor: pointer; border: 2px solid #1E2D7A; border-radius: 6px;
-      background: transparent; color: #1E2D7A; transition: all 0.2s;
+    .hikaye-metin {
+      font-size: 17px; line-height: 1.95; color: #2a2a2a;
     }
-    .proje-btn:hover { background: #1E2D7A; color: white; }
-    .proje-btn.active { background: #1E2D7A; color: white; }
-
-    .proje-panel { display: none; }
-    .proje-panel.active { display: block; }
-
-    .proje-label { font-size: 12px; color: #999; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
-    .proje-baslik { font-size: 32px; font-weight: 700; color: #1E2D7A; margin-bottom: 8px; line-height: 1.2; }
-    .bolum { margin-bottom: 32px; }
-    .bolum-baslik {
-      font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
-      font-weight: 700; color: #C0392B; margin-bottom: 12px;
-      padding-bottom: 6px; border-bottom: 1px solid #e0dbd2;
-    }
-    .program-listesi { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .program-listesi li {
-      font-size: 17px; line-height: 1.5; color: #2a2a2a;
-      padding-left: 16px; position: relative;
-    }
-    .program-listesi li::before { content: '—'; position: absolute; left: 0; color: #C0392B; }
-    .program-listesi li em { font-style: italic; }
-    .muzisyen-item { font-size: 16px; color: #2a2a2a; line-height: 1.5; }
-    .muzisyen-rol {
-      font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
-      color: #888; margin-bottom: 4px; margin-top: 16px; font-weight: 600;
-    }
-    .aciklama-metin { font-size: 17px; line-height: 1.85; color: #2a2a2a; margin-bottom: 16px; }
-    .ayirici { border: none; border-top: 1px solid #ddd8d0; margin: 32px 0; }
 
     .site-footer { background: #1E2D7A; padding: 24px 40px; margin-top: 48px; }
     .footer-contacts { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
@@ -132,13 +98,11 @@
 
     @media (max-width: 640px) {
       .site-header { padding: 14px 20px; flex-direction: column; align-items: flex-start; }
-      .site-logo { width: 100px; height: 100px; }
       .site-name { font-size: 22px; }
       .nav-tabs { width: 100%; }
       .tab { padding: 8px 14px; font-size: 13px; }
       .hero-band { height: 200px; }
       .content-area { padding: 32px 20px; }
-      .proje-baslik { font-size: 24px; }
       .site-footer { padding: 20px; }
     }
   </style>
@@ -148,25 +112,21 @@
 <div class="hero-band"></div>
 
 <header class="site-header">
-  <a href="index.html" class="logo-group">
-
-  </a>
+  <a href="index.html" class="logo-group"></a>
   <div class="header-right">
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('tr', this)">TR</button>
       <button class="lang-btn" onclick="setLang('en', this)">EN</button>
     </div>
     <nav class="nav-tabs">
-      <a href="sezon.html" class="tab active" data-tr="2026 / 2027 Sezonu" data-en="2026 / 2027 Season">2026 / 2027 Sezonu</a>
+      <a href="sezon.html" class="tab" data-tr="2026 / 2027 Sezonu" data-en="2026 / 2027 Season">2026 / 2027 Sezonu</a>
       <a href="sanatcilar.html" class="tab" data-tr="Sanatçılar" data-en="Artists">Sanatçılar</a>
       <a href="medya.html" class="tab" data-tr="Medya" data-en="Media">Medya</a>
-	  <a href="hikayemiz.html" class="tab" data-tr="Hikayemiz" data-en="Our Story">Hikayemiz</a>
-	  <a href="index.html" class="tab" data-tr="Ana Sayfa" data-en="Main Page">Ana Sayfa</a>
+      <a href="hikayemiz.html" class="tab active" data-tr="Hikayemiz" data-en="Our Story">Hikayemiz</a>
+      <a href="index.html" class="tab" data-tr="Ana Sayfa" data-en="Main Page">Ana Sayfa</a>
     </nav>
   </div>
 </header>
-
-
 
 <main class="content-area">
   <div class="page-title" data-tr="Hikayemiz" data-en="Our Story">Hikayemiz</div>
